@@ -1,0 +1,939 @@
+/* =========================================
+   GLOBAL - CHAPTER 1
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    overscroll-behavior-y: auto;
+    overflow-x: hidden;
+    height: auto;
+}
+
+body {
+    width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+
+    /* clip (bukan hidden) supaya position: sticky tetap bekerja */
+    overflow-x: clip;
+    overflow-y: visible;
+
+    background: #eee2cc;
+    color: #542d25;
+    font-family: "Nunito", sans-serif;
+
+    overscroll-behavior-y: auto;
+    touch-action: pan-y;
+}
+
+/* Kunci scroll hanya saat About terbuka */
+body.about-open {
+    overflow: hidden;
+}
+
+
+/* =========================================
+   MENU BUTTON
+========================================= */
+
+.menu-toggle {
+    position: fixed;
+    top: 35px;
+    right: 35px;
+    left: auto;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.15s ease;
+}
+
+.menu-toggle.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: none;
+}
+
+.menu-toggle img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: auto;
+    width: 380px;
+    max-width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    padding: 100px 45px 45px;
+    overflow-y: auto;
+
+    background: #f6ecd8;
+
+    z-index: 350;
+    transform: translateX(110%);
+    transition: transform 0.7s cubic-bezier(.77, 0, .18, 1);
+
+    box-shadow:
+        -8px 8px 0 #eee5d2,
+        -17px 17px 0 #e4d6b8,
+        -20px 20px 32px rgba(42, 29, 22, 0.18);
+}
+
+.sidebar.active {
+    transform: translateX(0);
+}
+
+.sidebar .sidebar-close {
+    position: absolute;
+    top: 20px;
+    right: 22px;
+    left: auto;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    background: transparent;
+    color: #542d25;
+
+    font-family: Arial, sans-serif;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 1;
+
+    cursor: pointer;
+    z-index: 5;
+}
+
+.sidebar nav {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar .sidebar-main {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+
+    width: 100%;
+}
+
+.sidebar .sidebar-main a {
+    display: block;
+    width: 100%;
+    flex: 0 0 auto;
+
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
+
+    color: #542d25;
+    font-family: "Im Fell DW Pica", serif;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 1.4;
+
+    text-align: left;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+
+    transition: color 0.2s ease;
+}
+
+.sidebar .sidebar-main a:hover {
+    color: #9b6a35;
+}
+
+
+/* =========================================
+   ABOUT — SIDEBAR
+========================================= */
+
+.sidebar .sidebar-about {
+    display: block;
+    width: 100%;
+
+    margin-top: 20px;
+    padding-top: 18px;
+
+    border-top: 1px solid rgba(84, 45, 37, 0.4);
+}
+
+.sidebar .sidebar-about button {
+    appearance: none;
+    -webkit-appearance: none;
+
+    display: block;
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    border: none;
+    border-radius: 0;
+    outline-offset: 4px;
+
+    background: transparent;
+    color: #542d25;
+
+    font-family: "Im Fell DW Pica", serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.4;
+
+    text-align: left;
+    cursor: pointer;
+    box-shadow: none;
+}
+
+.sidebar .sidebar-about button:hover {
+    color: #9b6a35;
+}
+
+.sidebar .sidebar-about button:focus-visible {
+    outline: 1px solid #542d25;
+    outline-offset: 4px;
+}
+
+
+/* =========================================
+   SOUND BUTTON
+========================================= */
+
+.sound-toggle {
+    position: fixed;
+    left: 30px;
+    bottom: 28px;
+    top: auto;
+    right: auto;
+
+    width: 48px;
+    height: 48px;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 300;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+.sound-toggle img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.sound-toggle:focus-visible,
+.menu-toggle:focus-visible,
+.sidebar-close:focus-visible {
+    outline: 2px solid #542d25;
+    outline-offset: 4px;
+}
+
+
+/* =========================================
+   CHAPTER OPENING & CURVE TRANSITION
+========================================= */
+
+.chapter-opening {
+    position: relative;
+    height: 170vh;              /* area scroll untuk animasi kurva */
+    background: #F8F5F1;
+}
+
+.opening-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    min-height: 600px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+    background: #F8F5F1;
+    z-index: 2;
+}
+
+.chapter-heading {
+    position: relative;
+    z-index: 3;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    padding: 0 5%;
+    color: #531616;
+    pointer-events: none;
+    transform: translateX(6px);
+}
+
+.chapter-heading p {
+    letter-spacing: 5px;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.chapter-heading h1 {
+    font-family: "Im Fell DW Pica", serif;
+    font-size: 55px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0;
+    white-space: nowrap;
+}
+
+/* Kurva krem: mulai dari tinggi 0, dibesarkan oleh GSAP */
+.cream-curve-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 0vh;
+    z-index: 4;
+    pointer-events: none;
+    will-change: width, height;
+}
+
+.cream-curve-bottom svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+
+/* =========================================
+   CHAPTER CONTENT
+========================================= */
+
+.chapter-content {
+    position: relative;          
+    min-height: auto;
+    padding-top: 0;
+    padding-bottom: 50px;
+
+    background: linear-gradient(
+        #eee2cc 0%,
+        #471e23 50%
+    );
+}
+
+.content-container {
+    width: min(1100px, 92vw);
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   VIDEO FRAME
+========================================= */
+
+.video-frame {
+    position: relative;
+    top: -300px;      /* ini yang menaikkan bingkai */
+    z-index: 5;       /* supaya klip tidak tertutup area opening */
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.paper-frame {
+    position: absolute;
+    width: 100%;
+    height: calc(100% + 80px);
+    top: 80%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.video-content {
+    position: relative;
+    z-index: 1;
+    top: 150px;
+    width: 88%;
+    margin: 0 auto;
+}
+
+.video-content video,
+.video-frame video {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    background: #2a1218;
+}
+
+.video-play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 76px;
+    height: 76px;
+
+    border: 1px solid #542d25;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #fffaf0;
+    color: #542d25;
+    cursor: pointer;
+    z-index: 5;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        opacity 0.3s ease;
+}
+
+.video-play-button:hover {
+    transform: translate(-50%, -50%) scale(1.08);
+    background: #eee2cc;
+}
+
+.video-frame.is-playing .video-play-button {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.video-frame.is-playing:hover .video-play-button {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Elemen scrapbook */
+
+.frame-clip,
+.frame-seal {
+    position: absolute;
+    height: auto;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.frame-clip {
+    width: 220px;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.frame-seal {
+    width: 150px;
+    right: -35px;
+    bottom: -35px;
+    transform: translateY(158px);
+    rotate: 12deg;
+}
+
+
+/* =========================================
+   STORY
+========================================= */
+
+.story {
+    width: min(700px, 90vw);
+    margin: 200px auto 150px;   /* sebelumnya 500px; kurangi sebesar angka top di atas */
+    color: #fff5df;
+    text-align: center;
+}
+
+.story-label {
+    letter-spacing: 5px;
+    margin-bottom: 35px;
+}
+
+.story h2 {
+    font-family: "Im Fell DW Pica", serif;
+    font-size: 52px;
+    line-height: 1.3;
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+
+.story p {
+    font-size: 18px;
+    line-height: 2;
+}
+
+
+/* =========================================
+   ABOUT OVERLAY
+========================================= */
+
+.about-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.88);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+.about-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.about-image {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: min(90vw, 900px);
+    max-height: 85vh;
+    object-fit: contain;
+}
+
+.about-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #fff;
+
+    font-family: Arial, sans-serif;
+    font-size: 42px;
+    font-weight: 400;
+    line-height: 1;
+
+    cursor: pointer;
+    z-index: 2;
+}
+
+.about-close:hover {
+    opacity: 0.7;
+}
+
+.about-close:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 4px;
+}
+
+
+/* =========================================
+   RESPONSIVE — TABLET
+========================================= */
+
+@media (max-width: 900px) {
+    .sidebar {
+        width: 340px;
+        max-width: 100%;
+        padding: 90px 35px 35px;
+    }
+
+    .sidebar .sidebar-main {
+        gap: 18px;
+    }
+
+    .sidebar .sidebar-main a {
+        font-size: 23px;
+    }
+
+    .sidebar .sidebar-about {
+        margin-top: 18px;
+        padding-top: 16px;
+    }
+
+    .sidebar .sidebar-about button {
+        font-size: 22px;
+    }
+
+    .menu-toggle {
+        top: 25px;
+        right: 25px;
+    }
+
+    .sidebar .sidebar-close {
+        top: 20px;
+        right: 22px;
+    }
+
+    .chapter-opening {
+        height: 150vh;
+    }
+
+    .chapter-heading h1 {
+        font-size: 42px;
+    }
+
+    .story h2 {
+        font-size: 38px;
+    }
+
+    .content-container {
+        width: 94vw;
+    }
+
+    .video-content {
+        width: 86%;
+    }
+
+    .frame-clip {
+        width: 24%;
+    }
+
+    .frame-seal {
+        width: 16%;
+    }
+
+    .sound-toggle {
+        left: 24px;
+        bottom: 24px;
+        width: 44px;
+        height: 44px;
+    }
+
+    .about-overlay {
+        padding: 20px;
+    }
+
+    .about-image {
+        max-width: 90vw;
+        max-height: 85vh;
+    }
+}
+
+
+/* =========================================
+   RESPONSIVE — MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+    .menu-toggle {
+        top: 20px;
+        right: 20px;
+        left: auto;
+        width: 42px;
+        height: 42px;
+    }
+
+    .menu-toggle img {
+        width: 42px;
+        height: 42px;
+    }
+
+    .sidebar {
+        width: min(340px, 88vw);
+        max-width: 88vw;
+        padding: 74px 24px 24px;
+    }
+
+    .sidebar .sidebar-close {
+        top: 16px;
+        right: 16px;
+        width: 40px;
+        height: 40px;
+        font-size: 34px;
+    }
+
+    .sidebar .sidebar-main {
+        gap: 17px;
+    }
+
+    .sidebar .sidebar-main a {
+        font-size: 21px;
+        line-height: 1.4;
+    }
+
+    .sidebar .sidebar-about {
+        margin-top: 16px;
+        padding-top: 15px;
+    }
+
+    .sidebar .sidebar-about button {
+        font-size: 21px;
+    }
+
+    .sound-toggle {
+        left: 18px;
+        bottom: 18px;
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Opening */
+
+    .chapter-opening {
+        height: 150svh;
+    }
+
+    .opening-sticky {
+        height: 100svh;
+        min-height: 0;
+    }
+
+    .chapter-heading {
+        width: 100%;
+        padding: 24px;
+        transform: none;
+    }
+
+    .chapter-heading p {
+        font-size: 11px;
+        letter-spacing: 3px;
+        margin-bottom: 14px;
+    }
+
+    .chapter-heading h1 {
+        width: 100%;
+        max-width: 340px;
+
+        font-size: clamp(27px, 7vw, 34px);
+        line-height: 1.25;
+
+        white-space: normal;
+        overflow-wrap: normal;
+        text-wrap: balance;
+    }
+
+    /* Konten */
+
+    .chapter-content {
+    min-height: auto;
+    padding: 0 0 50px;
+}
+
+    .content-container {
+        width: 100%;
+        max-width: none;
+        margin: 0 auto;
+        padding: 0 14px;
+    }
+
+       .video-frame {
+        top: 0;
+        width: 100%;
+        max-width: 100%;
+        padding: 14% 7% 13%;
+        margin: 0 auto;
+    }
+
+    .paper-frame {
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+
+        transform: translate(-50%, -50%);
+        object-fit: fill;
+    }
+
+    .video-content {
+        top: 0;
+        width: 100%;
+        margin: 0 auto;
+        z-index: 2;
+    }
+
+    .video-play-button {
+        width: 52px;
+        height: 52px;
+    }
+
+    .frame-clip {
+        width: 28%;
+        max-width: 100px;
+        top: -3%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .frame-seal {
+        width: 20%;
+        max-width: 75px;
+        right: -1%;
+        bottom: -2%;
+        transform: none;
+        rotate: 12deg;
+    }
+
+    /* Story */
+
+    .story {
+        width: 100%;
+        margin: 100px auto 60px;
+        padding: 0 8px;
+    }
+
+    .story-label {
+        font-size: 11px;
+        letter-spacing: 3px;
+        margin-bottom: 22px;
+    }
+
+    .story h2 {
+        font-size: clamp(28px, 7vw, 34px);
+        line-height: 1.25;
+        margin-bottom: 24px;
+    }
+
+    .story p {
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+    /* About */
+
+    .about-overlay {
+        padding: 16px;
+    }
+
+    .about-image {
+        max-width: 94vw;
+        max-height: 80vh;
+        max-height: 80dvh;
+    }
+
+    .about-close {
+        top: 12px;
+        right: 16px;
+        font-size: 36px;
+    }
+}
+
+
+/* =========================================
+   RESPONSIVE — HP SANGAT KECIL
+========================================= */
+
+@media (max-width: 360px) {
+    .sidebar {
+        width: 90vw;
+        max-width: 90vw;
+        padding-right: 20px;
+        padding-left: 22px;
+    }
+
+    .sidebar .sidebar-main {
+        gap: 15px;
+    }
+
+    .sidebar .sidebar-main a {
+        font-size: 19px;
+    }
+
+    .sidebar .sidebar-about button {
+        font-size: 20px;
+    }
+
+    .sound-toggle {
+        left: 14px;
+        bottom: 14px;
+        width: 36px;
+        height: 36px;
+    }
+}
+
+
+/* =========================================
+   ABOUT — LAYAR PENDEK / LANDSCAPE
+========================================= */
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .about-overlay {
+        padding: 10px;
+    }
+
+    .about-image {
+        max-height: 88dvh;
+    }
+
+    .about-close {
+        top: 6px;
+        right: 6px;
+        font-size: 32px;
+    }
+}
+
+
+/* =========================================
+   REDUCE MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .sidebar {
+        transition-duration: 0.01ms;
+    }
+
+    .about-overlay {
+        transition-duration: 0.01ms;
+    }
+}

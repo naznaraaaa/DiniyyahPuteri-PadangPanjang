@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 1 — Diniyyah Puteri</title>
+
+    <!-- Cegah flash ukuran awal saat masuk dari Chapter Menu -->
+    <script>
+        (function () {
+            try {
+                if (sessionStorage.getItem("fromChapterMenu") === "chapter1") {
+                    document.documentElement.classList.add("is-entering-chapter");
+                }
+            } catch (error) {}
+        })();
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../assets/global/fonts/fonts.css">
+</head>
+<body>
+
+    <!-- SOUND BUTTON -->
+    <button
+        class="sound-toggle"
+        id="soundToggle"
+        type="button"
+        aria-label="Nyalakan musik"
+        aria-pressed="false"
+    >
+        <img
+            id="soundIcon"
+            src="../../assets/global/icons/SoundOff.png"
+            alt=""
+        >
+    </button>
+
+    <!-- MENU BUTTON -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">
+        <img src="../../assets/global/icons/iconmenu.png" alt="">
+    </button>
+
+    <!-- BACKGROUND MUSIC -->
+    <audio
+        id="backgroundMusic"
+        src="../../assets/global/sound/Backsound.mp3"
+        loop
+        preload="auto"
+    ></audio>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+        <button
+            class="sidebar-close"
+            id="sidebarClose"
+            type="button"
+            aria-label="Tutup menu"
+        >×</button>
+
+        <nav>
+            <div class="sidebar-main">
+                <a href="../chaptermenu/index.html">00 — The Story</a>
+                <a href="../chapter1/index.html">01 — Chapter 1</a>
+                <a href="../chapter2/index.html">02 — Chapter 2</a>
+                <a href="../chapter3/index.html">03 — Chapter 3</a>
+                <a href="../chapter4/index.html">04 — Chapter 4</a>
+                <a href="../chapter5/index.html">05 — Chapter 5</a>
+            </div>
+
+            <div class="sidebar-about">
+                <button type="button" id="aboutToggle">About</button>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- ABOUT IMAGE OVERLAY -->
+    <div
+        class="about-overlay"
+        id="aboutOverlay"
+        aria-hidden="true"
+    >
+        <div class="about-image-container">
+            <button
+                id="aboutClose"
+                class="about-close"
+                type="button"
+                aria-label="Tutup About"
+            >×</button>
+
+            <img
+                class="about-image"
+                src="../../assets/global/img/about.png"
+                alt="Tentang cerita, cara menjelajah, sumber dan arsip, serta tim"
+            >
+        </div>
+    </div>
+
+    <!-- CHAPTER -->
+    <main class="chapter-page">
+
+    <!-- OPENING -->
+<section class="chapter-opening">
+    <div class="opening-sticky">
+
+        <div class="chapter-heading">
+            <p>CHAPTER 01</p>
+            <h1>Kini, Nama Rahmah El Yunusiyyah Diakui</h1>
+        </div>
+
+        <!-- Elemen Krem yang awalnya tersembunyi di bawah, lalu naik/membesar saat di-scroll -->
+        <div class="cream-curve-bottom">
+            <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+               <path fill="#eee2cc" d="M0,200 C360,0 1080,0 1440,200 L1440,320 L0,320 Z"></path>
+            </svg>
+        </div>
+
+    </div>
+</section>
+
+        <!-- CONTENT -->
+        <section class="chapter-content">
+            <div class="content-container">
+
+                <div class="video-frame">
+
+                    <img
+                        class="paper-frame"
+                        src="../../assets/chapter1/images/paper_chapter1.png"
+                        alt=""
+                    >
+
+                    <div class="video-content">
+                        <video id="chapterVideo" playsinline preload="metadata">
+                            <source
+                                src="../../assets/chapter1/video/motiongraphic.mp4"
+                                type="video/mp4"
+                            >
+                            Browser kamu tidak mendukung video.
+                        </video>
+
+                        <button
+                            class="video-play-button"
+                            id="videoPlayButton"
+                            aria-label="Putar video"
+                            type="button"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                width="28"
+                                height="28"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="M8 4 L20 12 L8 20 Z"
+                                    fill="currentColor"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <img
+                        class="frame-clip"
+                        src="../../assets/chapter1/images/elemen1.png"
+                        alt=""
+                    >
+
+                    <img
+                        class="frame-seal"
+                        src="../../assets/chapter1/images/elemen2.png"
+                        alt=""
+                    >
+
+                </div>
+
+                <div class="story">
+                    <p class="story-label">SEBUAH PERJALANAN</p>
+
+                    <h2>
+                        Sebuah gagasan yang tumbuh
+                        menjadi perjuangan.
+                    </h2>
+
+                    <p>
+                        Rahmah El Yunusiyyah percaya bahwa pendidikan
+                        adalah jalan bagi perempuan untuk berdiri,
+                        belajar, dan menentukan masa depan.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- GSAP -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+    <script src="../../assets/global/js/global-ui.js"></script>
+
+</body>
+</html>
