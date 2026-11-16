@@ -1,0 +1,45 @@
+/* Letak file ini: assets/global/fonts/fonts.css
+   Path di bawah relatif terhadap file ini, jadi cukup nama file. */
+
+/* Nunito */
+@font-face {
+    font-family: "Nunito";
+    src: url("Nunito-Regular.woff2") format("woff2");
+    font-weight: 200 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Nunito";
+    src: url("Nunito-Italic.woff2") format("woff2");
+    font-weight: 200 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* IM Fell DW Pica */
+@font-face {
+    font-family: "IM Fell DW Pica";
+    src: url("IMFellDWPica-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "IM Fell DW Pica";
+    src: url("IMFellDWPica-Italic.woff2") format("woff2");
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Cherry Swash */
+@font-face {
+    font-family: "Cherry Swash";
+    src: url("CherrySwash-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
