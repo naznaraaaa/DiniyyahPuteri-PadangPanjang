@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diniyyah Puteri — Chapter Menu</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../assets/global/fonts/fonts.css">
+</head>
+
+<body>
+<main class="chapter-menu">
+
+    <!-- BACKGROUND -->
+    <div class="background"></div>
+
+    <!-- DECORATIONS -->
+    <div class="corner-decorations" aria-hidden="true">
+        <img class="decoration decoration-top-left"
+            src="../../assets/chaptermenu/decorations/kiriatas.png" alt="">
+
+        <img class="decoration decoration-top-right"
+            src="../../assets/chaptermenu/decorations/kananatas.png" alt="">
+
+        <img class="decoration decoration-bottom-left"
+            src="../../assets/chaptermenu/decorations/kiribawah.png" alt="">
+
+        <img class="decoration decoration-bottom-right"
+            src="../../assets/chaptermenu/decorations/kananbawah.png" alt="">
+    </div>
+
+    <!-- HEADER -->
+    <header class="header">
+        <a class="logo" href="../../index.html">
+            <img src="../../assets/logo/logo-diniyyah.png" alt="Diniyyah Puteri">
+        </a>
+
+        <div class="title-area">
+            <p>ARSIP PERJALANAN</p>
+            <h1>Setiap cerita punya perjalanan.</h1>
+            <span>
+                Telusuri kisah Diniyyah Puteri,
+                dari awal mula hingga hari ini.
+            </span>
+        </div>
+
+        <button id="aboutToggle" class="about-button" type="button" aria-label="Buka About">
+            ABOUT
+        </button>
+    </header>
+
+    <!-- SOUND BUTTON -->
+    <button class="sound-toggle" id="soundToggle" type="button"
+        aria-label="Nyalakan musik" aria-pressed="false">
+        <img id="soundIcon" src="../../assets/global/icons/SoundOff.png" alt="">
+    </button>
+
+    <!-- BACKGROUND MUSIC -->
+    <audio id="backgroundMusic"
+        src="../../assets/global/sound/Backsound.mp3"
+        loop preload="auto"></audio>
+
+    <!-- CHAPTER CAROUSEL -->
+    <section class="chapters">
+        <div class="chapter-track" id="chapterTrack">
+
+            <!-- CHAPTER 1 -->
+            <article class="chapter-item" data-target="../chapter1/index.html">
+                <svg class="chapter-circle chapter-circle-svg"
+                    data-transition="chapter1"
+                    viewBox="0 0 200 200"
+                    preserveAspectRatio="xMidYMid meet"
+                    role="img" aria-label="Chapter 1">
+                    <path
+                        d="M100 8 C112 8 119 15 130 18 C143 21 151 29 158 39 C169 47 174 58 176 70 C181 82 177 94 179 105 C178 118 171 127 166 138 C160 150 149 155 139 163 C128 172 116 172 104 177 C91 181 80 175 68 173 C55 169 47 161 37 153 C27 145 24 133 20 121 C15 109 19 97 17 85 C18 73 24 63 30 53 C36 41 47 36 58 29 C70 20 81 20 91 13 C94 10 97 9 100 8 Z"
+                        fill="#F8F5F1"/>
+                </svg>
+                <span class="chapter-circle-label">Chapter 1</span>
+                <div class="chapter-info">
+                    <p>KINI</p>
+                    <h2>Kini, Nama Rahmah El Yunusiyyah Diakui</h2>
+                </div>
+            </article>
+
+            <!-- CHAPTER 2 -->
+            <article class="chapter-item" data-target="../chapter2/index.html">
+                <svg class="chapter-circle chapter-circle-svg"
+                    data-transition="chapter2"
+                    viewBox="0 0 200 200"
+                    preserveAspectRatio="xMidYMid meet"
+                    role="img" aria-label="Chapter 2">
+                    <path
+                        d="M100 8 C112 8 119 15 130 18 C143 21 151 29 158 39 C169 47 174 58 176 70 C181 82 177 94 179 105 C178 118 171 127 166 138 C160 150 149 155 139 163 C128 172 116 172 104 177 C91 181 80 175 68 173 C55 169 47 161 37 153 C27 145 24 133 20 121 C15 109 19 97 17 85 C18 73 24 63 30 53 C36 41 47 36 58 29 C70 20 81 20 91 13 C94 10 97 9 100 8 Z"
+                        fill="#f2eada"/>
+                </svg>
+                <span class="chapter-circle-label">Chapter 2</span>
+                <div class="chapter-info">
+                    <p>SOSOK</p>
+                    <h2>Di balik sebuah nama</h2>
+                </div>
+            </article>
+
+            <!-- CHAPTER 3 -->
+            <article class="chapter-item" data-target="../chapter3/index.html">
+                <svg class="chapter-circle chapter-circle-svg"
+                    data-transition="chapter3"
+                    viewBox="0 0 200 200"
+                    preserveAspectRatio="xMidYMid meet"
+                    role="img" aria-label="Chapter 3">
+                    <path
+                        d="M100 8 C112 8 119 15 130 18 C143 21 151 29 158 39 C169 47 174 58 176 70 C181 82 177 94 179 105 C178 118 171 127 166 138 C160 150 149 155 139 163 C128 172 116 172 104 177 C91 181 80 175 68 173 C55 169 47 161 37 153 C27 145 24 133 20 121 C15 109 19 97 17 85 C18 73 24 63 30 53 C36 41 47 36 58 29 C70 20 81 20 91 13 C94 10 97 9 100 8 Z"
+                        fill="#D6B255"/>
+                </svg>
+                <span class="chapter-circle-label">Chapter 3</span>
+                <div class="chapter-info">
+                    <p>BERAWAL</p>
+                    <h2>Dari Sebuah Gagasan</h2>
+                </div>
+            </article>
+
+            <!-- CHAPTER 4 -->
+            <article class="chapter-item" data-target="../chapter4/index.html">
+                <svg class="chapter-circle chapter-circle-svg"
+                    data-transition="chapter4"
+                    viewBox="0 0 200 200"
+                    preserveAspectRatio="xMidYMid meet"
+                    role="img"
+                    aria-label="Chapter 4">
+                    <path
+                        d="M100 8 C112 8 119 15 130 18 C143 21 151 29 158 39 C169 47 174 58 176 70 C181 82 177 94 179 105 C178 118 171 127 166 138 C160 150 149 155 139 163 C128 172 116 172 104 177 C91 181 80 175 68 173 C55 169 47 161 37 153 C27 145 24 133 20 121 C15 109 19 97 17 85 C18 73 24 63 30 53 C36 41 47 36 58 29 C70 20 81 20 91 13 C94 10 97 9 100 8 Z"
+                        fill="#8d9d86"/>
+                </svg>
+                <span class="chapter-circle-label">Chapter 4</span>
+                <div class="chapter-info">
+                    <p>JEJAK</p>
+                    <h2>Lintas Generasi</h2>
+                </div>
+            </article>
+
+            <!-- CHAPTER 5 -->
+            <article class="chapter-item" data-target="../chapter5/index.html">
+                <svg class="chapter-circle chapter-circle-svg"
+                    data-transition="chapter5"
+                    viewBox="0 0 200 200"
+                    preserveAspectRatio="xMidYMid meet"
+                    role="img"
+                    aria-label="Chapter 5">
+                    <path
+                        d="M100 8 C112 8 119 15 130 18 C143 21 151 29 158 39 C169 47 174 58 176 70 C181 82 177 94 179 105 C178 118 171 127 166 138 C160 150 149 155 139 163 C128 172 116 172 104 177 C91 181 80 175 68 173 C55 169 47 161 37 153 C27 145 24 133 20 121 C15 109 19 97 17 85 C18 73 24 63 30 53 C36 41 47 36 58 29 C70 20 81 20 91 13 C94 10 97 9 100 8 Z"
+                        fill="#4f9ea0"/>
+                </svg>
+                <span class="chapter-circle-label">Chapter 5</span>
+                <div class="chapter-info">
+                    <p>WARISAN</p>
+                    <h2>Yang Terus Hidup</h2>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- SWIPE -->
+    <div class="swipe">
+        <span>←</span>
+        Swipe untuk menjelajah
+        <span>→</span>
+    </div>
+
+</main>
+
+<!-- ABOUT OVERLAY -->
+<div class="about-overlay" id="aboutOverlay" aria-hidden="true">
+    <div class="about-image-container">
+        <button id="aboutClose" class="about-close"
+            type="button" aria-label="Tutup About">×</button>
+        <img class="about-image"
+            src="../../assets/global/img/about.png"
+            alt="Tentang cerita, cara menjelajah, sumber dan arsip, serta tim">
+    </div>
+</div>
+
+<!-- CHAPTER TRANSITION -->
+<div class="transition-layer" id="transitionLayer">
+    <img id="transitionImage" src="" alt="">
+    <div class="transition-title">
+        <p>CHAPTER 01</p>
+        <h1>Kini, Nama Rahmah El Yunusiyyah Diakui</h1>
+    </div>
+</div>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="script.js"></script>
+<script src="../../assets/global/js/global-ui.js"></script>
+
+</body>
+</html>
