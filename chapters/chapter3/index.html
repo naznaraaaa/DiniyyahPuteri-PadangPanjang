@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 3 — Diniyyah Puteri</title>
+
+    <!-- Font lokal -->
+    <link rel="stylesheet" href="../../assets/global/fonts/fonts.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- SOUND BUTTON -->
+    <button
+        class="sound-toggle"
+        id="soundToggle"
+        type="button"
+        aria-label="Nyalakan musik"
+        aria-pressed="false"
+    >
+        <img
+            id="soundIcon"
+            src="../../assets/global/icons/SoundOff.png"
+            alt=""
+        >
+    </button>
+
+    <!-- MENU BUTTON -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">
+        <img src="../../assets/global/icons/iconmenu.png" alt="">
+    </button>
+
+    <!-- BACKGROUND MUSIC -->
+    <audio
+        id="backgroundMusic"
+        src="../../assets/global/sound/Backsound.mp3"
+        loop
+        preload="auto"
+    ></audio>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+        <button
+            class="sidebar-close"
+            id="sidebarClose"
+            type="button"
+            aria-label="Tutup menu"
+        >×</button>
+
+        <nav>
+            <div class="sidebar-main">
+                <a href="../chaptermenu/index.html">00 — The Story</a>
+                <a href="../chapter1/index.html">01 — Chapter 1</a>
+                <a href="../chapter2/index.html">02 — Chapter 2</a>
+                <a href="../chapter3/index.html">03 — Chapter 3</a>
+                <a href="../chapter4/index.html">04 — Chapter 4</a>
+                <a href="../chapter5/index.html">05 — Chapter 5</a>
+            </div>
+
+            <div class="sidebar-about">
+                <button
+                    type="button"
+                    id="aboutToggle"
+                    aria-controls="aboutOverlay"
+                    aria-expanded="false"
+                >About</button>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- ABOUT OVERLAY -->
+    <div class="about-overlay" id="aboutOverlay" aria-hidden="true">
+        <button
+            type="button"
+            class="about-close"
+            id="aboutClose"
+            aria-label="Close About"
+        >&times;</button>
+
+        <img
+            src="../../assets/global/img/about.png"
+            alt="About"
+            class="about-image"
+        >
+    </div>
+
+    <!-- CHAPTER -->
+    <main class="chapter-page">
+
+        <!-- OPENING CHAPTER 3 -->
+        <section class="chapter-opening">
+            <div class="opening-sticky">
+
+                <!-- PAPER (dipakai transisi dari menu) -->
+                <svg
+                    id="chapterTransition"
+                    class="chapter-paper"
+                    viewBox="0 0 200 200"
+                    preserveAspectRatio="xMidYMid meet"
+                    role="img"
+                    aria-label="Chapter 3"
+                >
+                    <path
+                        transform="translate(-40 -40) scale(1.5)"
+                        d="M100 8 C112 8 119 15 130 18 C143 21 151 29 158 39 C169 47 174 58 176 70 C181 82 177 94 179 105 C178 118 171 127 166 138 C160 150 149 155 139 163 C128 172 116 172 104 177 C91 181 80 175 68 173 C55 169 47 161 37 153 C27 145 24 133 20 121 C15 109 19 97 17 85 C18 73 24 63 30 53 C36 41 47 36 58 29 C70 20 81 20 91 13 C94 10 97 9 100 8 Z"
+                        fill="#D6B255"
+                    />
+                </svg>
+
+                <div class="chapter-heading">
+                    <p>CHAPTER 03</p>
+                    <h1>Sebuah gagasan kemudian diwujudkan melalui pendidikan</h1>
+                </div>
+
+                <!-- KURVA TRANSISI -->
+                <div class="curve-bottom">
+                    <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+                        <path fill="#CBB388" d="M0,200 C360,0 1080,0 1440,200 L1440,320 L0,320 Z"></path>
+                    </svg>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONTENT: TIMELINE -->
+        <section class="chapter-content">
+            <div class="content-container">
+
+                <header class="timeline-intro">
+                    <span class="timeline-eyebrow">SEBUAH PERJALANAN</span>
+                    <h2>Dari Sebuah Gagasan</h2>
+                    <p>
+                        Berawal dari sebuah pemikiran, tumbuh menjadi
+                        perjalanan pendidikan yang membawa perubahan.
+                    </p>
+                </header>
+
+                <!-- MADING (card dibuat otomatis dari script.js) -->
+                <div class="memory-board" id="memoryBoard">
+                    <div class="memory-track" id="memoryTrack">
+                        <svg class="memory-string" id="memoryString" aria-hidden="true">
+                            <path id="memoryStringPath" class="string-main"></path>
+                            <path id="memoryStringTwist" class="string-twist"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <p class="board-note">
+                    Setiap lembar menyimpan cerita.
+                </p>
+                <p class="board-swipe-hint">Geser ke samping untuk melihat perjalanan →</p>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MEMORY DETAIL OVERLAY (klik di mana saja untuk menutup) -->
+    <div class="memory-modal" id="memoryModal" aria-hidden="true">
+        <article
+            class="memory-detail-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="memoryDetailTitle"
+        >
+            <div class="memory-detail-photo">
+                <img id="memoryDetailImg" src="" alt="">
+            </div>
+
+            <div class="memory-detail-content">
+                <span class="memory-detail-eyebrow" id="memoryDetailEyebrow"></span>
+                <h2 id="memoryDetailTitle"></h2>
+                <div class="memory-detail-text" id="memoryDetailText"></div>
+            </div>
+        </article>
+        <p class="memory-close-hint">Ketuk di mana saja untuk menutup</p>
+    </div>
+
+    <!-- GSAP -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
