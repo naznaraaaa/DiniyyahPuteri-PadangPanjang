@@ -1,0 +1,229 @@
+/* ==================================================
+   LARGE DESKTOP
+================================================== */
+
+@media (min-width: 1440px) {
+
+    .loading-info {
+
+        left: 40px;
+
+        bottom: 35px;
+
+    }
+
+
+    .loading-percentage {
+
+        font-size: 52px;
+
+    }
+
+
+    .scroll-indicator {
+
+        bottom: 38px;
+
+    }
+
+
+    .audio-toggle {
+
+        right: 38px;
+
+        bottom: 34px;
+
+    }
+
+}
+
+
+/* ==================================================
+   TABLET
+================================================== */
+
+@media (max-width: 1023px) {
+
+    .loading-info {
+
+        left: 24px;
+
+        bottom: 24px;
+
+    }
+
+
+    .loading-percentage {
+
+        font-size: 40px;
+
+    }
+
+
+    .entry-logo {
+
+        width: 180px;
+
+    }
+
+
+    #loading-screen::after {
+
+        width: 280px;
+
+        height: 280px;
+
+    }
+
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 767px) {
+
+    #loading-screen,
+    #entry-page {
+
+        width: 100%;
+
+        height: 100svh;
+
+        min-height: 100svh;
+
+    }
+
+
+    .loading-info {
+
+        left: 20px;
+
+        bottom: 20px;
+
+        gap: 9px;
+
+    }
+
+
+    .loading-percentage {
+
+        min-width: 45px;
+
+        font-size: 34px;
+
+    }
+
+
+    .loading-text {
+
+        font-size: 12px;
+
+    }
+
+
+    /*
+       Spotlight di HP lebih kecil
+       karena layar lebih sempit.
+    */
+
+    .loading-current-image {
+
+        clip-path:
+            circle(
+                115px
+                at
+                var(--cursor-x, 50vw)
+                var(--cursor-y, 50vh)
+            );
+
+    }
+
+
+    #loading-screen::after {
+
+        width: 230px;
+
+        height: 230px;
+
+    }
+
+
+    .entry-logo {
+
+        width: 145px;
+
+    }
+
+
+    .scroll-indicator {
+
+        bottom: 22px;
+
+    }
+
+
+    .scroll-text {
+
+        font-size: 11px;
+
+    }
+
+
+    .scroll-line {
+
+        height: 28px;
+
+    }
+
+
+    .audio-toggle {
+
+        right: 17px;
+
+        bottom: 20px;
+
+        padding: 5px;
+
+    }
+
+
+    .audio-label {
+
+        display: none;
+
+    }
+
+}
+
+
+/* ==================================================
+   VERY SMALL PHONE
+================================================== */
+
+@media (max-width: 380px) {
+
+    .loading-info {
+
+        left: 15px;
+
+        bottom: 15px;
+
+    }
+
+
+    .loading-percentage {
+
+        font-size: 30px;
+
+    }
+
+
+    .entry-logo {
+
+        width: 125px;
+
+    }
+
+}

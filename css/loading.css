@@ -1,0 +1,346 @@
+/* ==================================================
+   LOADING SCREEN
+================================================== */
+
+#loading-screen {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100vw;
+
+    height: 100vh;
+
+    z-index: 9999;
+
+    overflow: hidden;
+
+    background: #000;
+
+    opacity: 1;
+
+    visibility: visible;
+
+}
+
+
+/* ==================================================
+   FOTO LAMA
+================================================== */
+
+.loading-background {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    z-index: 1;
+
+}
+
+
+.loading-background img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    filter:
+        grayscale(100%)
+        contrast(0.95);
+
+}
+
+
+/* ==================================================
+   FOTO MASA KINI
+   SPOTLIGHT
+================================================== */
+
+.loading-current-image {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    z-index: 2;
+
+    pointer-events: none;
+
+    /*
+       Awalnya hanya lingkaran kecil
+       di posisi cursor.
+    */
+
+    clip-path:
+        circle(
+            160px
+            at
+            var(--cursor-x, 50vw)
+            var(--cursor-y, 50vh)
+        );
+
+}
+
+
+/* FOTO MODERN */
+
+.loading-current-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+}
+
+
+/* ==================================================
+   SPOTLIGHT ACTIVE
+================================================== */
+
+#loading-screen.spotlight-active
+.loading-current-image {
+
+    opacity: 1;
+
+}
+
+
+/* ==================================================
+   ORGANIC BORDER
+================================================== */
+
+#loading-screen::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: var(--cursor-x, 50vw);
+
+    top: var(--cursor-y, 50vh);
+
+    width: 320px;
+
+    height: 320px;
+
+    z-index: 4;
+
+    pointer-events: none;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius:
+        48%
+        52%
+        55%
+        45%
+        /
+        52%
+        45%
+        55%
+        48%;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.15);
+
+    opacity: 0;
+
+    transition:
+        opacity 0.4s ease;
+
+}
+
+
+/* Ketika cursor bergerak */
+
+#loading-screen.spotlight-active::after {
+
+    opacity: 1;
+
+}
+
+
+/* ==================================================
+   OVERLAY
+================================================== */
+
+.loading-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 3;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.04),
+            rgba(0,0,0,0.02) 50%,
+            rgba(0,0,0,0.16)
+        );
+
+}
+
+
+/* ==================================================
+   LOADING INFO
+================================================== */
+
+.loading-info {
+
+    position: absolute;
+
+    left: 28px;
+
+    bottom: 26px;
+
+    z-index: 10;
+
+    display: flex;
+
+    align-items: baseline;
+
+    gap: 14px;
+
+    color: #fff;
+
+    font-family:
+        var(--font-body);
+
+}
+
+
+/* ==================================================
+   PERCENTAGE
+================================================== */
+
+.loading-percentage {
+
+    min-width: 55px;
+
+    font-family:
+        var(--font-display);
+
+    font-size: 46px;
+
+    line-height: 1;
+
+    letter-spacing: -0.04em;
+
+}
+
+
+/* ==================================================
+   LOADING TEXT
+================================================== */
+
+.loading-text {
+
+    min-width: 80px;
+
+    font-size: 14px;
+
+    letter-spacing: 0.03em;
+
+}
+
+
+/* ==================================================
+   TRANSITION TO ENTRY
+================================================== */
+
+/*
+   Ketika loading selesai,
+   spotlight membesar sampai menutup layar.
+*/
+
+#loading-screen.expanding
+.loading-current-image {
+
+    clip-path:
+        circle(
+            150vmax
+            at
+            var(--cursor-x, 50vw)
+            var(--cursor-y, 50vh)
+        );
+
+    transition:
+        clip-path 1.8s
+        cubic-bezier(
+            0.76,
+            0,
+            0.24,
+            1
+        );
+
+}
+
+
+/*
+   Hilangkan border spotlight
+   ketika sedang expand.
+*/
+
+#loading-screen.expanding::after {
+
+    opacity: 0;
+
+}
+
+
+/*
+   Loading info menghilang
+   sebelum transisi selesai.
+*/
+
+#loading-screen.expanding
+.loading-info {
+
+    opacity: 0;
+
+    transition:
+        opacity 0.4s ease;
+
+}
+
+
+/* ==================================================
+   LOADING SCREEN SELESAI
+================================================== */
+
+#loading-screen.finished {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.8s ease;
+
+}
