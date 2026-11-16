@@ -808,12 +808,13 @@ body.about-open {
         height: 52px;
     }
 
-    .frame-clip {
-        width: 28%;
-        max-width: 100px;
-        top: -3%;
+       .frame-clip {
+        width: 38%;
+        max-width: 140px;
+        top: 0;
         left: 50%;
-        transform: translateX(-50%);
+        /* geser berdasarkan tinggi jepitan sendiri, bukan tinggi bingkai */
+        transform: translate(-50%, -50%);
     }
 
     .frame-seal {
