@@ -1,0 +1,893 @@
+/* =========================================
+   GLOBAL
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: auto;
+    overscroll-behavior-y: auto;
+    overflow-x: hidden;
+    height: auto;
+}
+
+body {
+    width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    overflow-x: clip;      /* clip (bukan hidden) supaya sticky bekerja */
+    overflow-y: visible;
+    touch-action: pan-y;
+    font-family: "Nunito", sans-serif;
+    color: #542d25;
+}
+
+
+/* =========================================
+   MENU ICON — KANAN ATAS
+========================================= */
+
+.menu-toggle {
+    position: fixed;
+    top: 35px;
+    right: 35px;
+    left: auto;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 300;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.15s ease;
+}
+
+.menu-toggle.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: none;
+}
+
+.menu-toggle img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+/* =========================================
+   SIDEBAR — MASUK DARI KANAN
+========================================= */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: auto;
+    width: 380px;
+    max-width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    padding: 100px 45px 45px;
+    overflow-y: auto;
+
+    background: #f6ecd8;
+
+    z-index: 350;
+    transform: translateX(110%);
+    transition: transform 0.7s cubic-bezier(.77, 0, .18, 1);
+
+    box-shadow:
+        -8px 8px 0 #eee5d2,
+        -17px 17px 0 #e4d6b8,
+        -20px 20px 32px rgba(42, 29, 22, 0.18);
+}
+
+.sidebar.active {
+    transform: translateX(0);
+}
+
+.sidebar .sidebar-close {
+    position: absolute;
+    top: 20px;
+    right: 22px;
+    left: auto;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: #542d25;
+    font-family: Arial, sans-serif;
+    font-size: 36px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.sidebar nav {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar .sidebar-main {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    width: 100%;
+}
+
+.sidebar nav a {
+    display: block;
+    width: 100%;
+    flex: 0 0 auto;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
+    color: #542d25;
+    font-family: "Im Fell DW Pica", serif;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 1.4;
+    text-align: left;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+
+.sidebar nav a:hover {
+    color: #9b6a35;
+}
+
+.sidebar .sidebar-about {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(84, 45, 37, 0.4);
+}
+
+.sidebar .sidebar-about button {
+    appearance: none;
+    -webkit-appearance: none;
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: #542d25;
+    font-family: "Im Fell DW Pica", serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.4;
+    text-align: left;
+    cursor: pointer;
+}
+
+.sidebar .sidebar-about button:hover {
+    color: #9b6a35;
+}
+
+.sidebar .sidebar-about button:focus-visible {
+    outline: 1px solid #542d25;
+    outline-offset: 4px;
+}
+
+
+/* =========================================
+   SOUND BUTTON — KIRI BAWAH
+========================================= */
+
+.sound-toggle {
+    position: fixed;
+    left: 30px;
+    bottom: 30px;
+    top: auto;
+    right: auto;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 400;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.sound-toggle img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.sound-toggle:focus-visible {
+    outline: 2px solid #542d25;
+    outline-offset: 4px;
+}
+
+
+/* =========================================
+   CHAPTER OPENING
+   (warna kertas = warna bulatan Chapter 4)
+========================================= */
+
+.chapter-opening {
+    position: relative;
+    width: 100%;
+    height: 135vh;                 /* area scroll animasi kurva */
+    background: #8d9d86;
+}
+
+.opening-sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    min-height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: #8d9d86;
+}
+
+/* Kertas (dipakai script.js untuk menyamakan ukuran transisi dari menu) */
+.chapter-paper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 0;
+    width: 100%;
+    height: auto;
+    max-width: none;
+    transform: translate(-50%, -50%);
+    transform-origin: center center;
+    pointer-events: none;
+    will-change: transform;
+}
+
+.chapter-heading {
+    position: relative;
+    z-index: 3;
+    padding: 0 5%;
+    text-align: center;
+    color: #F3EBDD;
+    pointer-events: none;
+}
+
+.chapter-heading p {
+    margin-bottom: 14px;
+    font-size: 14px;
+    letter-spacing: 5px;
+}
+
+.chapter-heading h1 {
+    margin: 0;
+    font-family: "Im Fell DW Pica", serif;
+    font-size: 55px;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.chapter-heading h1 .heading-line {
+    display: block;
+}
+
+/* Kurva transisi (tingginya dianimasikan oleh GSAP) */
+.curve-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    height: 0;
+    z-index: 4;
+    pointer-events: none;
+    will-change: width, height;
+}
+
+.curve-bottom svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* =========================================
+   CHAPTER CONTENT — GRADIEN #7E9680 → #F3EBDD
+========================================= */
+
+.chapter-page .chapter-content {
+    position: relative;
+    padding: 0 0 110px;
+    background: linear-gradient(
+        to bottom,
+        #7E9680 0%,
+        #F3EBDD 65%,
+        #F3EBDD 100%
+    );
+}
+
+.content-container {
+    width: min(1100px, 92vw);
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   ALUMNI — PENGANTAR (kertas prangko + segel)
+========================================= */
+
+.alumni-intro {
+    position: relative;
+    padding-top: clamp(0px, 1vw, 16px);
+}
+
+.intro-paper {
+    position: relative;
+    width: min(760px, 92%);
+    margin: 0 auto;
+    padding: clamp(36px, 6vw, 84px) clamp(30px, 7vw, 100px);
+    text-align: center;
+
+    /* Ganti nama file kalau aset kertasmu berbeda */
+    background-color: #fbf8f1;
+    background-image: url("../../assets/chapter4/images/paper-stamp.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border-radius: 6px;
+}
+
+.intro-paper p {
+    color: #2f5b5b;
+    font-family: "Im Fell DW Pica", serif;
+    font-size: clamp(18px, 2.3vw, 32px);
+    line-height: 1.5;
+}
+
+.intro-seal {
+    position: absolute;
+    right: -8%;                         /* sebelumnya -3%, makin negatif = makin ke kanan */
+    bottom: -18%;                        /* sebelumnya -18%, makin besar = makin naik */
+    width: clamp(90px, 13vw, 180px);    /* sebelumnya clamp(70px, 10vw, 140px) */
+    height: auto;
+    pointer-events: none;
+}
+
+
+/* =========================================
+   ALUMNI — KARTU
+========================================= */
+
+.alumni {
+    /* Ukuran dasar kartu: ubah --card-w untuk memperbesar/memperkecil semua */
+    --card-w: clamp(150px, 19vw, 260px);
+    --card-h: calc(var(--card-w) * 1.93);
+    --open-w: min(calc(var(--card-w) * 2.9), 92vw);
+    --gap: calc(var(--card-w) * 0.2);
+    --radius: calc(var(--card-w) * 0.16);
+
+    --panel-bg: #7792A3;
+    --panel-text: #f2f0e8;
+    --ink: #2f5555;
+
+    padding-top: clamp(150px, 16vw, 240px);   /* sebelumnya clamp(90px, 10vw, 150px) */
+}
+
+.alumni-title {
+    margin-bottom: clamp(26px, 4vw, 54px);
+    text-align: center;
+    color: var(--ink);
+    font-family: "Im Fell DW Pica", serif;
+    font-size: clamp(32px, 4vw, 56px);
+    font-weight: 400;
+    letter-spacing: 3px;
+}
+
+.alumni-grid {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+}
+
+/* Satu kartu */
+.alumni-card {
+    position: relative;
+    flex: 0 0 auto;
+    width: var(--card-w);
+    height: var(--card-h);
+    transition:
+        width 0.8s cubic-bezier(.65, 0, .25, 1),
+        margin 0.8s cubic-bezier(.65, 0, .25, 1),
+        opacity 0.5s ease;
+}
+
+.alumni-card + .alumni-card {
+    margin-left: var(--gap);
+}
+
+/* Saat ada yang terbuka: hilangkan jarak, kartu terbuka melebar */
+.alumni-grid.has-open .alumni-card {
+    margin-left: 0;
+}
+
+.alumni-card.is-open {
+    width: var(--open-w);
+}
+
+/* Kartu lain menghilang */
+.alumni-card.is-hidden {
+    width: 0;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* Foto (tombol) — selalu di kiri, di atas panel */
+.alumni-photo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: var(--card-w);
+    height: 100%;
+    padding: 0;
+    border: none;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: #cfd6cf;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    box-shadow: 0 10px 24px rgba(40, 55, 45, 0.18);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.alumni-card:not(.is-open) .alumni-photo:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 30px rgba(40, 55, 45, 0.26);
+}
+
+.alumni-photo:focus-visible {
+    outline: 3px solid #305959;
+    outline-offset: 4px;
+}
+
+.alumni-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Label nama di bawah foto */
+.alumni-name {
+    position: absolute;
+    left: 50%;
+    bottom: 4%;
+    transform: translateX(-50%);
+    max-width: 92%;
+    padding: 0.12em 0.55em;
+    background: #fff;
+    color: #3b575f;
+    font-family: "Cherry Swash", "Im Fell DW Pica", serif;
+    font-size: max(11px, calc(var(--card-w) * 0.085));
+    font-weight: 700;
+    line-height: 1.25;
+    white-space: nowrap;
+}
+
+/* Panel penjelasan — di belakang foto, muncul saat kartu terbuka */
+.alumni-panel {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    padding:
+        clamp(20px, 3vw, 44px)
+        clamp(18px, 3.4vw, 52px)
+        clamp(20px, 3vw, 44px)
+        calc(var(--card-w) + clamp(16px, 2.8vw, 44px));
+    border-radius: var(--radius);
+    background: var(--panel-bg);
+    color: var(--panel-text);
+    cursor: pointer;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+
+.alumni-card.is-open .alumni-panel {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease 0.45s, visibility 0s linear 0.45s;
+}
+
+.alumni-panel h3 {
+    margin-bottom: 1.1em;
+    font-family: "Nunito", sans-serif;
+    font-size: clamp(15px, 1.5vw, 21px);
+    font-style: italic;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.alumni-panel p {
+    font-family: "Nunito", sans-serif;
+    font-size: clamp(12.5px, 1.3vw, 18px);
+    line-height: 1.6;
+    text-align: justify;
+    hyphens: auto;
+}
+
+/* =========================================
+   PENUTUP (setelah kartu alumni)
+========================================= */
+
+.closing {
+    width: min(720px, 90%);
+    margin: 0 auto;
+    /* padding atas yang besar = jarak scroll sebelum kalimat muncul */
+    padding: clamp(120px, 18vw, 260px) 0 clamp(40px, 8vw, 110px);
+    text-align: center;
+    color: #2f5555;
+}
+
+.closing-label {
+    margin-bottom: 22px;
+    font-family: "Nunito", sans-serif;
+    font-size: clamp(11px, 1.1vw, 14px);
+    letter-spacing: 5px;
+}
+
+.closing-title {
+    margin-bottom: 26px;
+    font-family: "Im Fell DW Pica", serif;
+    font-size: clamp(28px, 4vw, 52px);
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+.closing-text {
+    max-width: 560px;
+    margin: 0 auto;
+    color: #4c6b66;
+    font-family: "Nunito", sans-serif;
+    font-size: clamp(15px, 1.5vw, 18px);
+    line-height: 1.9;
+}
+
+/* =========================================
+   ABOUT OVERLAY
+========================================= */
+
+.about-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.88);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.about-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.about-image {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: min(90vw, 900px);
+    max-height: 85vh;
+    object-fit: contain;
+}
+
+.about-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-size: 42px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.about-close:hover {
+    opacity: 0.7;
+}
+
+
+/* =========================================
+   RESPONSIVE — TABLET (≤ 900px)
+========================================= */
+
+@media (max-width: 900px) {
+    .menu-toggle {
+        top: 25px;
+        right: 25px;
+    }
+
+    .sidebar {
+        width: 340px;
+        max-width: 86vw;
+        padding: 78px 28px 26px;
+    }
+
+    .sidebar .sidebar-main {
+        gap: 18px;
+    }
+
+    .sidebar nav a {
+        font-size: 23px;
+    }
+
+    .sidebar .sidebar-about {
+        margin-top: 18px;
+        padding-top: 16px;
+    }
+
+    .sidebar .sidebar-about button {
+        font-size: 22px;
+    }
+
+    .sound-toggle {
+        left: 24px;
+        bottom: 24px;
+        width: 44px;
+        height: 44px;
+    }
+
+    .chapter-heading h1 {
+        font-size: 42px;
+    }
+
+    .content-container {
+        width: 94vw;
+    }
+
+    .alumni {
+        --card-w: clamp(150px, 24vw, 230px);
+    }
+}
+
+
+/* =========================================
+   RESPONSIVE — HP (≤ 700px)
+========================================= */
+
+@media (max-width: 700px) {
+    .alumni {
+        --card-w: 38vw;
+        --open-w: 92vw;
+        --gap: 5vw;
+    }
+
+    .alumni-panel {
+        padding: 16px 16px 16px calc(var(--card-w) + 14px);
+    }
+
+    .alumni-panel h3 {
+        margin-bottom: 0.7em;
+        font-size: 13.5px;
+    }
+
+    .alumni-panel p {
+        font-size: 12px;
+        line-height: 1.5;
+        text-align: left;      /* kolom sempit: rata kiri supaya spasi tidak renggang */
+    }
+
+    .alumni-name {
+        font-size: max(10px, calc(var(--card-w) * 0.075));
+    }
+
+    .alumni-footer {
+        padding-right: 0;
+    }
+}
+
+
+/* =========================================
+   RESPONSIVE — HP (≤ 600px)
+========================================= */
+
+@media (max-width: 600px) {
+    .menu-toggle {
+        top: 18px;
+        right: 18px;
+        width: 44px;
+        height: 44px;
+    }
+
+    .sidebar {
+        width: min(340px, 88vw);
+        max-width: 88vw;
+        padding: 74px 24px 24px;
+    }
+
+    .sidebar .sidebar-close {
+        top: 16px;
+        right: 16px;
+        width: 40px;
+        height: 40px;
+        font-size: 34px;
+    }
+
+    .sidebar .sidebar-main {
+        gap: 17px;
+    }
+
+    .sidebar nav a {
+        font-size: 21px;
+    }
+
+    .sidebar .sidebar-about {
+        margin-top: 16px;
+        padding-top: 15px;
+    }
+
+    .sidebar .sidebar-about button {
+        font-size: 21px;
+    }
+
+    .sound-toggle {
+        left: 18px;
+        bottom: 18px;
+        width: 42px;
+        height: 42px;
+    }
+
+    .chapter-opening {
+        height: 120svh;
+    }
+
+    .opening-sticky {
+        height: 100svh;
+        min-height: 0;
+    }
+
+    .chapter-paper {
+        width: 110vw;
+    }
+
+    .chapter-heading p {
+        font-size: 11px;
+        letter-spacing: 3px;
+    }
+
+    .chapter-heading h1 {
+        font-size: clamp(27px, 7vw, 34px);
+        line-height: 1.25;
+    }
+
+    .content-container {
+        width: 100%;
+        max-width: none;
+        padding: 0 14px;
+    }
+
+    .chapter-page .chapter-content {
+        padding-bottom: 80px;
+    }
+}
+
+
+/* =========================================
+   RESPONSIVE — ABOUT (≤ 768px)
+========================================= */
+
+@media (max-width: 768px) {
+    .about-overlay {
+        padding: 16px;
+    }
+
+    .about-image {
+        max-width: 94vw;
+        max-height: 80vh;
+    }
+
+    .about-close {
+        top: 12px;
+        right: 16px;
+        font-size: 36px;
+    }
+}
+
+
+/* =========================================
+   RESPONSIVE — HP SANGAT KECIL (≤ 360px)
+========================================= */
+
+@media (max-width: 360px) {
+    .sidebar {
+        width: 90vw;
+        max-width: 90vw;
+        padding-right: 20px;
+        padding-left: 22px;
+    }
+
+    .sidebar .sidebar-main {
+        gap: 15px;
+    }
+
+    .sidebar nav a {
+        font-size: 19px;
+    }
+
+    .sidebar .sidebar-about button {
+        font-size: 20px;
+    }
+
+    .sound-toggle {
+        left: 14px;
+        bottom: 14px;
+        width: 38px;
+        height: 38px;
+    }
+
+    .alumni-panel p {
+        font-size: 11px;
+    }
+}
+
+
+/* =========================================
+   REDUCE MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .sidebar,
+    .alumni-card,
+    .alumni-panel,
+    .alumni-photo {
+        transition-duration: 0.01ms;
+        transition-delay: 0s;
+    }
+}
