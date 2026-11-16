@@ -1,0 +1,1366 @@
+/* =========================================
+   GLOBAL
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --opening:  #4E9EA0;    /* opening: kertas / bulatan / bg */
+    --cream:    #F0E9D7;    /* bg andong, kurva, & bagian penutup */
+    --grad-top: #7EC2C5;    /* bg foto-foto: 0–50% */
+    --grad-end: #48A3A7;    /* bg foto-foto: 100% */
+        --text-green: #2A7478;  /* warna teks di bg krem (andong & penutup) */
+    --overlap:  40vh;       /* seberapa awal bagian andong naik menimpa opening (makin besar = makin dekat) */
+}
+
+html {
+    scroll-behavior: auto;
+    overscroll-behavior-y: auto;
+    overflow-x: hidden;
+    height: auto;
+}
+
+body {
+    width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    overflow-x: clip;      /* clip (bukan hidden) supaya sticky bekerja */
+    overflow-y: visible;
+    touch-action: pan-y;
+    font-family: "Nunito", sans-serif;
+    color: var(--ink);
+}
+
+
+/* =========================================
+   MENU ICON — KANAN ATAS
+========================================= */
+
+.menu-toggle {
+    position: fixed;
+    top: 35px;
+    right: 35px;
+    left: auto;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 300;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.15s ease;
+}
+
+.menu-toggle.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: none;
+}
+
+.menu-toggle img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+/* =========================================
+   SIDEBAR — MASUK DARI KANAN
+========================================= */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: auto;
+    width: 380px;
+    max-width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    padding: 100px 45px 45px;
+    overflow-y: auto;
+
+    background: #f6ecd8;
+
+    z-index: 350;
+    transform: translateX(110%);
+    transition: transform 0.7s cubic-bezier(.77, 0, .18, 1);
+
+    box-shadow:
+        -8px 8px 0 #eee5d2,
+        -17px 17px 0 #e4d6b8,
+        -20px 20px 32px rgba(42, 29, 22, 0.18);
+}
+
+.sidebar.active {
+    transform: translateX(0);
+}
+
+.sidebar .sidebar-close {
+    position: absolute;
+    top: 20px;
+    right: 22px;
+    left: auto;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: #542d25;
+    font-family: Arial, sans-serif;
+    font-size: 36px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.sidebar nav {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar .sidebar-main {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    width: 100%;
+}
+
+.sidebar nav a {
+    display: block;
+    width: 100%;
+    flex: 0 0 auto;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
+    color: #542d25;
+    font-family: "Im Fell DW Pica", serif;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 1.4;
+    text-align: left;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+
+.sidebar nav a:hover {
+    color: #9b6a35;
+}
+
+.sidebar .sidebar-about {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(84, 45, 37, 0.4);
+}
+
+.sidebar .sidebar-about button {
+    appearance: none;
+    -webkit-appearance: none;
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: #542d25;
+    font-family: "Im Fell DW Pica", serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.4;
+    text-align: left;
+    cursor: pointer;
+}
+
+.sidebar .sidebar-about button:hover {
+    color: #9b6a35;
+}
+
+.sidebar .sidebar-about button:focus-visible {
+    outline: 1px solid #542d25;
+    outline-offset: 4px;
+}
+
+
+/* =========================================
+   SOUND BUTTON — KIRI BAWAH
+========================================= */
+
+.sound-toggle {
+    position: fixed;
+    left: 30px;
+    bottom: 30px;
+    top: auto;
+    right: auto;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 400;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.sound-toggle img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.sound-toggle:focus-visible {
+    outline: 2px solid #542d25;
+    outline-offset: 4px;
+}
+
+
+/* =========================================
+   CHAPTER OPENING
+   (warna kertas = warna bulatan Chapter 5)
+========================================= */
+
+.chapter-opening {
+    position: relative;
+    width: 100%;
+    height: 150vh;                 /* area scroll animasi kurva */
+    background: var(--opening);
+}
+
+.opening-sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    min-height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: var(--opening);
+}
+
+.chapter-paper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 0;
+    width: 100%;
+    height: auto;
+    max-width: none;
+    transform: translate(-50%, -50%);
+    transform-origin: center center;
+    pointer-events: none;
+    will-change: transform;
+}
+
+.chapter-heading {
+    position: relative;
+    z-index: 3;
+    padding: 0 5%;
+    text-align: center;
+    color: #F3EBDD;
+    pointer-events: none;
+}
+
+.chapter-heading p {
+    margin-bottom: 14px;
+    font-size: 14px;
+    letter-spacing: 5px;
+}
+
+.chapter-heading h1 {
+    margin: 0;
+    font-family: "Im Fell DW Pica", serif;
+    font-size: 55px;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+/* Kurva transisi (tingginya dianimasikan oleh GSAP) */
+.curve-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    height: 0;
+    z-index: 4;
+    pointer-events: none;
+    will-change: width, height;
+}
+
+.curve-bottom svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.curve-bottom path {
+    fill: var(--cream);      /* yang terbuka setelah animasi = bg krem andong */
+}
+
+
+/* =========================================
+   CHAPTER CONTENT — krem (andong)
+========================================= */
+
+.chapter-page .chapter-content {
+    position: relative;
+    z-index: 2;
+    margin-top: calc(var(--overlap) * -1);    /* naik menimpa ujung opening → tidak ada jeda kosong */
+    /* bagian atas transparan (di atas kertas krem dari kurva), sisanya krem */
+    background: linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent var(--overlap),
+        var(--cream) var(--overlap)
+    );
+}
+
+.content-container {
+    width: min(1100px, 92vw);
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   ANDONG — FOTO LAMA ⇄ MASA KINI
+========================================= */
+
+.timeline {
+    --stage-w: min(560px, 86vw);
+    --andong-w: clamp(92px, 15vw, 150px);
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;   /* rapat ke atas, tidak lagi di tengah */
+    min-height: 100vh;                         /* panjang bg krem andong: ubah angka ini */
+    min-height: 120svh;
+    background: transparent;
+    padding: clamp(36px, 6vh, 70px) 0 clamp(90px, 16vh, 160px);   /* atas tipis, bawah lega */
+}
+
+.time-wrap {
+    position: relative;
+    width: var(--stage-w);
+    text-align: center;
+}
+
+/* ---- Foto berbingkai prangko ----
+   Urutan: bingkai (belakang) → foto (depan, di dalam jendela bingkai).
+   Ukuran stage mengikuti rasio asli file bingkai (tidak ditarik/gepeng).
+   Atur --win-* kalau foto belum pas masuk ke dalam bingkai. */
+.time-stage {
+    --win-t: 20.5%;
+    --win-r: 6.5%;
+    --win-b: 20%;
+    --win-l: 6.5%;
+
+    position: relative;
+    width: 100%;
+    /* File bingkai punya area transparan di bawahnya; tarik andong + teks naik.
+       Makin negatif = makin dekat ke bingkai (mis. -22%), makin kecil = makin jauh. */
+    margin-bottom: -19%;
+    filter: drop-shadow(0 12px 22px rgba(60, 45, 30, 0.22));
+}
+
+.time-frame {
+    position: relative;
+    z-index: 0;
+    display: block;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+    user-select: none;
+}
+
+.time-photo {
+    position: absolute;
+    z-index: 1;
+    top: var(--win-t);
+    right: var(--win-r);
+    bottom: var(--win-b);
+    left: var(--win-l);
+    overflow: hidden;
+    background: #d9d2c0;
+}
+
+.time-photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* Foto masa kini: dibuka dari sisi kanan (clip-path diatur script.js) */
+.photo-present {
+    clip-path: inset(0 0 0 100%);
+    will-change: clip-path;
+}
+
+/* ---- Jalur & andong ---- */
+.time-track {
+    --track-w: min(calc(var(--stage-w) * 1.9), 96vw);   /* panjang jalan andong */
+
+    position: relative;
+    width: var(--track-w);
+    height: clamp(64px, 11vw, 96px);
+    margin: clamp(4px, 1vw, 10px) 0 0 calc((100% - var(--track-w)) / 2);
+    touch-action: none;
+    cursor: pointer;
+}
+
+.andong {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: var(--andong-w);
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    will-change: transform;
+    z-index: 2;
+}
+
+/* Putar balik: menghadap kanan (ke masa kini) / kiri (kembali ke masa lalu) */
+.andong-flip {
+    display: block;
+    transform: perspective(700px) rotateY(0deg);
+    transition: transform 0.6s cubic-bezier(.5, 0, .2, 1);
+}
+
+.andong.is-facing-left .andong-flip {
+    transform: perspective(700px) rotateY(180deg);
+}
+
+.andong img {
+    display: block;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+    transform-origin: 50% 100%;
+    transition: transform 0.3s ease;
+}
+
+.andong.is-dragging {
+    cursor: grabbing;
+}
+
+/* Andong sedikit terangkat & bergoyang saat ditarik */
+.andong.is-dragging img {
+    animation: andong-bob 0.45s ease-in-out infinite;
+}
+
+.andong:focus-visible {
+    outline: 2px dashed #542d25;
+    outline-offset: 4px;
+    border-radius: 6px;
+}
+
+@keyframes andong-bob {
+    0%, 100% { transform: translateY(0)    rotate(0deg); }
+    50%      { transform: translateY(-3px) rotate(-1.2deg); }
+}
+
+/* ---- Keterangan ---- */
+.time-caption {
+    position: relative;
+    display: grid;
+    margin-top: clamp(-30px, -3vw, -14px);    /* andong sedikit menimpa judul, seperti di video */
+    pointer-events: none;
+}
+
+.caption {
+    grid-area: 1 / 1;
+    transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.caption-present {
+    opacity: 0;
+    transform: translateY(8px);
+}
+
+.time-caption.is-present .caption-past {
+    opacity: 0;
+    transform: translateY(-8px);
+}
+
+.time-caption.is-present .caption-present {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.caption h2 {
+    margin-bottom: 6px;
+    color: var(--text-green);
+    font-family: "Im Fell DW Pica", serif;
+    font-size: clamp(18px, 2.2vw, 24px);
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+.caption p {
+color: var(--text-green); 
+    font-size: clamp(12px, 1.3vw, 14px);
+    line-height: 1.6;
+}
+
+.time-hint {
+    margin-top: clamp(18px, 3vw, 30px);
+ color: rgba(42, 116, 120, 0.8);
+     font-size: clamp(10.5px, 1.1vw, 12px);
+    letter-spacing: 0.4px;
+}
+
+
+
+
+/* =========================================
+   FOTO-FOTO — bg gradasi, berganti saat scroll
+   Foto besar + teks dalam kartu overlay (kaca transparan).
+========================================= */
+
+.photo-story {
+    position: relative;
+    height: 440vh;                                   /* 4 step × scroll */
+    background: linear-gradient(to bottom, var(--grad-top) 50%, var(--grad-end) 100%);
+}
+
+.story-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+}
+
+.story-step {
+    /* Ukuran foto: ubah 0.7 (tinggi) / 0.4 (lebar) untuk memperbesar–memperkecil */
+    --W: min(1180px, 94vw);
+    --H: min(86vh, 760px);
+    --H: min(86svh, 760px);
+    --sh: min(calc(var(--H) * 0.7), calc(var(--W) * 0.4 / 0.82));
+    --sw: calc(var(--sh) * 0.82);
+
+    position: absolute;
+    inset: 0;
+    width: var(--W);
+    margin: 0 auto;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s ease, visibility 0s linear 0.6s;
+}
+
+.story-step.is-active {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.6s ease, visibility 0s;
+}
+
+.story-photos {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: var(--H);
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.stamp {
+    position: absolute;
+    width: var(--sw);
+    height: var(--sh);
+    cursor: zoom-in;
+    pointer-events: auto;
+    filter: drop-shadow(0 10px 18px rgba(20, 60, 62, 0.28));
+    transform: translateY(70px) rotate(var(--rot));
+    opacity: 0;
+    transition: transform 0.8s cubic-bezier(.22, .8, .3, 1), opacity 0.6s ease;
+}
+
+.stamp-a { --rot: -8deg; left: 0; top: 0; }
+.stamp-b { --rot: 7deg;  left: calc(var(--sw) * 0.78); bottom: 0; transition-delay: 0.12s; }
+
+.story-step.is-active .stamp {
+    transform: translateY(0) rotate(var(--rot));
+    opacity: 1;
+}
+
+.story-step.is-past .stamp {
+    transform: translateY(-70px) rotate(var(--rot));
+}
+
+.stamp:focus-visible {
+    outline: 3px solid #F3EBDD;
+    outline-offset: 6px;
+}
+
+.stamp-photo {
+    position: absolute;
+    inset: 7% 8%;
+    width: 84%;
+    height: 86%;
+    object-fit: cover;
+}
+
+.stamp-frame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    pointer-events: none;
+}
+
+/* Kartu teks overlay: muncul dengan tirai (wipe) + fade */
+.story-text {
+    position: absolute;
+    z-index: 3;
+    right: 0;
+    top: 50%;
+    width: min(38%, 430px);
+    padding: clamp(20px, 2.4vw, 36px);
+    border: 1px solid rgba(243, 235, 221, 0.35);
+    border-radius: 20px;
+    background: rgba(38, 122, 127, 0.72);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 18px 40px rgba(15, 60, 62, 0.3);
+
+    opacity: 0;
+    clip-path: inset(0 100% 0 0 round 20px);
+    transform: translateY(-50%) translateX(30px);
+    transition:
+        opacity 0.5s ease,
+        clip-path 0.9s cubic-bezier(.7, 0, .2, 1),
+        transform 0.9s cubic-bezier(.22, .8, .3, 1);
+}
+
+.story-step.is-active .story-text {
+    opacity: 1;
+    clip-path: inset(0 0 0 0 round 20px);
+    transform: translateY(-50%);
+    transition-delay: 0.35s;
+}
+
+.story-text p {
+    color: #F3EBDD;
+    font-family: "Im Fell DW Pica", serif;
+    font-size: clamp(16px, 1.8vw, 23px);
+    line-height: 1.6;
+    text-align: justify;
+    hyphens: auto;
+}
+
+.story-text p + p {
+    margin-top: 1.3em;
+}
+
+/* =========================================
+   PENUTUP — bg krem
+   Layar dikunci (sticky); foto di kiri bergeser naik mengikuti scroll,
+   teks di kanan diam. Tinggi section dihitung otomatis oleh script.js.
+========================================= */
+
+.finale {
+    --photo-w: min(46vw, 700px);     /* lebar kolom foto */
+    --photo-h: 90vh;                 /* tinggi minimal tiap foto */
+    --photo-h: 90svh;
+    --space-top: 35vh;               /* ruang kosong di atas foto pertama */
+    --space-top: 35svh;
+    --space-bottom: 35vh;            /* ruang kosong di bawah foto terakhir */
+    --space-bottom: 35svh;
+
+    position: relative;
+    width: 100%;
+    height: 250vh;                   /* cadangan; script.js menghitung ulang yang tepat */
+    margin: 0;
+    padding: 0;
+    background: var(--cream);
+}
+
+.finale-sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+}
+
+/* Kolom foto: nempel ke kiri (left: 0), ada ruang atas & bawah */
+.finale-photos {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--photo-w);
+    margin: 0;
+    padding: var(--space-top) 0 var(--space-bottom);
+    will-change: transform;
+}
+
+.finale-photos img {
+    display: block;
+    width: 100%;
+    height: auto;                    /* ikut tinggi asli foto... */
+    min-height: var(--photo-h);      /* ...tapi minimal setinggi ini */
+    margin: 0;
+    padding: 0;
+    border: 0;
+    object-fit: cover;               /* memenuhi kotak → tepi kosong di file ikut terpotong */
+    object-position: center;
+}
+
+/* Teks di sisi kanan, diam di tengah layar */
+.finale-text {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: var(--photo-w);
+    display: flex;
+    align-items: center;
+    padding: 0 clamp(24px, 6vw, 100px);
+}
+
+.finale-copy {
+    max-width: 520px;
+}
+
+.finale-title,
+.finale-body {
+    will-change: opacity, transform, filter;
+}
+
+.finale-title {
+    margin-bottom: clamp(16px, 2vw, 26px);
+color: var(--text-green);
+    font-family: "Im Fell DW Pica", serif;
+    font-size: clamp(30px, 3.6vw, 56px);
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.finale-body {
+color: var(--text-green);
+    font-family: "Nunito", sans-serif;
+    font-size: clamp(15px, 1.4vw, 19px);
+    line-height: 1.8;
+}
+
+/* =========================================
+   ABOUT OVERLAY
+========================================= */
+
+.about-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.88);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.about-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.about-image {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: min(90vw, 900px);
+    max-height: 85vh;
+    object-fit: contain;
+}
+
+.about-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-size: 42px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.about-close:hover {
+    opacity: 0.7;
+}
+
+
+/* =========================================
+   RESPONSIVE — TABLET (≤ 900px)
+========================================= */
+
+@media (max-width: 900px) {
+    .menu-toggle {
+        top: 25px;
+        right: 25px;
+    }
+
+    .sidebar {
+        width: 340px;
+        max-width: 86vw;
+        padding: 78px 28px 26px;
+    }
+
+    .sidebar .sidebar-main {
+        gap: 18px;
+    }
+
+    .sidebar nav a {
+        font-size: 23px;
+    }
+
+    .sidebar .sidebar-about {
+        margin-top: 18px;
+        padding-top: 16px;
+    }
+
+    .sidebar .sidebar-about button {
+        font-size: 22px;
+    }
+
+    .sound-toggle {
+        left: 24px;
+        bottom: 24px;
+        width: 44px;
+        height: 44px;
+    }
+
+    .chapter-heading h1 {
+        font-size: 42px;
+    }
+
+    .content-container {
+        width: 94vw;
+    }
+}
+
+/* =========================================
+   RESPONSIVE — HP (≤ 600px)
+========================================= */
+
+@media (max-width: 600px) {
+    .menu-toggle {
+        top: 18px;
+        right: 18px;
+        width: 44px;
+        height: 44px;
+    }
+
+    .sidebar {
+        width: min(340px, 88vw);
+        max-width: 88vw;
+        padding: 74px 24px 24px;
+    }
+
+    .sidebar .sidebar-close {
+        top: 16px;
+        right: 16px;
+        width: 40px;
+        height: 40px;
+        font-size: 34px;
+    }
+
+    .sidebar .sidebar-main {
+        gap: 17px;
+    }
+
+    .sidebar nav a {
+        font-size: 21px;
+    }
+
+    .sidebar .sidebar-about {
+        margin-top: 16px;
+        padding-top: 15px;
+    }
+
+    .sidebar .sidebar-about button {
+        font-size: 21px;
+    }
+
+    .sound-toggle {
+        left: 18px;
+        bottom: 18px;
+        width: 42px;
+        height: 42px;
+    }
+
+    .chapter-opening {
+        height: 130svh;
+    }
+
+    .opening-sticky {
+        height: 100svh;
+        min-height: 0;
+    }
+
+    .chapter-paper {
+        width: 110vw;
+    }
+
+    .chapter-heading p {
+        font-size: 11px;
+        letter-spacing: 3px;
+    }
+
+    .chapter-heading h1 {
+        font-size: clamp(27px, 7vw, 34px);
+        line-height: 1.25;
+    }
+
+    .content-container {
+        width: 100%;
+        max-width: none;
+        padding: 0 14px;
+    }
+
+    .time-track {
+        margin-left: -6%;
+        margin-right: -6%;
+    }
+
+    .story-step {
+        --W: 94vw;
+        --H: 62vh;
+        --H: 62svh;
+    }
+
+    .story-photos {
+        top: 6svh;
+        transform: none;
+    }
+
+    .story-text {
+        left: 3%;
+        right: 3%;
+        top: auto;
+        bottom: 5svh;
+        width: auto;
+        padding: 16px 18px;
+        transform: translateY(30px);
+    }
+
+    .story-step.is-active .story-text {
+        transform: none;
+    }
+
+    .story-text p {
+        font-size: 14.5px;
+        text-align: left;
+    }
+
+       .finale {
+        --photo-w: 36vw;
+    }
+
+    .finale-text {
+        padding: 0 18px 0 16px;
+    }
+
+    .finale-title {
+        font-size: clamp(22px, 6.5vw, 28px);
+    }
+
+    .finale-body {
+        font-size: 13.5px;
+        line-height: 1.7;
+    }
+}
+/* =========================================
+   RESPONSIVE — ABOUT (≤ 768px)
+========================================= */
+
+@media (max-width: 768px) {
+    .about-overlay {
+        padding: 16px;
+    }
+
+    .about-image {
+        max-width: 94vw;
+        max-height: 80vh;
+    }
+
+    .about-close {
+        top: 12px;
+        right: 16px;
+        font-size: 36px;
+    }
+}
+/* =========================================
+   RESPONSIVE — HP SANGAT KECIL (≤ 360px)
+========================================= */
+
+@media (max-width: 360px) {
+    .sidebar {
+        width: 90vw;
+        max-width: 90vw;
+        padding-right: 20px;
+        padding-left: 22px;
+    }
+
+    .sidebar .sidebar-main {
+        gap: 15px;
+    }
+
+    .sidebar nav a {
+        font-size: 19px;
+    }
+
+    .sidebar .sidebar-about button {
+        font-size: 20px;
+    }
+
+    .sound-toggle {
+        left: 14px;
+        bottom: 14px;
+        width: 38px;
+        height: 38px;
+    }
+}
+/* =========================================
+   REDUCE MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .sidebar,
+    .caption,
+    .story-step,
+    .story-text,
+    .andong-flip,
+    .stamp {
+        transition-duration: 0.01ms;
+        transition-delay: 0s;
+    }
+
+    .andong.is-dragging img {
+        animation: none;
+    }
+}
+
+/* FOTO — HOVER ZOOM */
+.stamp {
+    cursor: default;
+}
+
+.stamp-photo {
+    transform: scale(1);
+    transform-origin: var(--ox, 50%) var(--oy, 50%);   /* diisi script.js */
+    transition: transform 0.7s cubic-bezier(.22, .8, .3, 1);
+    will-change: transform;
+}
+
+.stamp.is-hovered .stamp-photo {
+    transform: scale(var(--zoom, 1.1));                /* besar zoom: ubah 1.1 */
+}
+
+/* Berlian kecil yang menyusul pelan di belakang kursor */
+.diamond-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 8000;
+    pointer-events: none;
+    will-change: transform;
+}
+
+.diamond-cursor span {
+    display: block;
+    width: 14px;
+    height: 14px;
+    border: 1px solid rgba(47, 85, 85, 0.45);
+    background: rgba(243, 235, 221, 0.95);
+    box-shadow: 0 3px 10px rgba(15, 60, 62, 0.25);
+    opacity: 0;
+    transform: rotate(45deg) scale(0);
+    transition: transform 0.35s cubic-bezier(.22, .8, .3, 1), opacity 0.25s ease;
+}
+
+.diamond-cursor.is-on span {
+    opacity: 1;
+    transform: rotate(45deg) scale(1);
+}
+/* =========================================
+   KARTU TEKS — BLOB ORGANIK (menggantikan kotak lama)
+   Bentuknya digambar script.js (SVG, 3 lapis warna) dan melar ke arah kursor.
+========================================= */
+
+.story-text {
+    /* kotak lama dimatikan: latar, garis tepi, blur, dan tirai (clip-path) */
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    clip-path: none;
+    padding: clamp(28px, 3.2vw, 48px) clamp(30px, 3.4vw, 52px);
+}
+
+/* state aktif juga harus bebas dari clip-path lama (kalau tidak, blob terpotong persegi) */
+.story-step.is-active .story-text {
+    clip-path: none;
+}
+
+.story-text p {
+    position: relative;               /* di atas blob */
+    z-index: 1;
+}
+
+.story-blob {
+    position: absolute;
+    left: -70px;
+    top: -70px;
+    width: calc(100% + 140px);        /* ruang ekstra supaya tepi yang melar tidak terpotong */
+    height: calc(100% + 140px);
+    overflow: visible;
+    pointer-events: none;
+    z-index: 0;
+    transform: scale(0.55);
+    transform-origin: 30% 50%;
+    opacity: 0;
+    transition: transform 0.9s cubic-bezier(.22, 1, .36, 1) 0.3s, opacity 0.5s ease 0.3s;
+}
+
+.story-step.is-active .story-blob {
+    transform: scale(1);
+    opacity: 1;
+}
+
+@media (max-width: 600px) {
+    .story-text {
+        padding: 22px 24px;
+    }
+}
+/* =========================================
+   RESPONSIVE MOBILE — rapikan bagian foto-foto, kartu teks, dan penutup
+   (taruh PALING BAWAH style.css supaya menimpa aturan mobile yang lama)
+========================================= */
+
+@media (max-width: 900px) and (orientation: portrait), (max-width: 600px) {
+
+    /* ---------- FOTO-FOTO (bg gradasi) ---------- */
+
+    .story-step {
+        /* ukuran foto dihitung langsung dari lebar & tinggi layar HP */
+        --sh: min(32vh, 64vw);
+        --sh: min(32svh, 64vw);
+        --sw: calc(var(--sh) * 0.82);
+
+        left: 0;
+        right: 0;
+        width: 100%;
+        margin: 0;
+    }
+
+    /* dua foto saling menumpuk: kiri-atas dan kanan-bawah */
+    .story-photos {
+        top: 11vh;
+        top: 11svh;                        /* di bawah tombol menu */
+        left: 0;
+        width: 100%;
+        height: calc(var(--sh) * 1.72);
+        transform: none;
+    }
+
+    .stamp-a {
+        left: 7vw;
+        top: 0;
+    }
+
+    .stamp-b {
+        left: auto;
+        right: 7vw;
+        top: calc(var(--sh) * 0.72);
+        bottom: auto;
+    }
+
+    /* ---------- KARTU TEKS (blob) ---------- */
+
+    .story-text {
+        left: max(8vw, calc(50% - 290px));    /* blob melar ±30px keluar dari kartu → sisakan ruang */
+        right: max(8vw, calc(50% - 290px));   /* di tablet kartu dibatasi ±580px & di tengah */
+        top: auto;
+        bottom: 9vh;
+        bottom: 9svh;                      /* di atas tombol suara */
+        width: auto;
+        padding: 24px 26px;
+        transform: translateY(26px);
+    }
+
+    .story-step.is-active .story-text {
+        transform: none;
+    }
+
+    .story-text p {
+        font-size: clamp(14.5px, 2.1vw, 18px);
+        line-height: 1.6;
+        text-align: left;
+    }
+
+    .story-text p + p {
+        margin-top: 0.9em;
+    }
+
+    .story-blob {
+        left: -34px;                       /* script.js membaca nilai ini otomatis */
+        top: -34px;
+        width: calc(100% + 68px);
+        height: calc(100% + 68px);
+    }
+
+    .finale,
+    .ending {
+        --photo-w: 40vw;
+        --photo-h: 80vh;
+        --photo-h: 80svh;
+        --space-top: 24vh;
+        --space-top: 24svh;
+        --space-bottom: 24vh;
+        --space-bottom: 24svh;
+    }
+
+    .finale-text,
+    .ending-text {
+        padding: 0 16px 0 14px;
+    }
+
+    .finale-title,
+    .ending-title {
+        font-size: clamp(22px, 6.2vw, 36px);
+        margin-bottom: 14px;
+    }
+
+    .finale-body,
+    .ending-body {
+        font-size: clamp(13.5px, 2vw, 17px);
+        line-height: 1.7;
+    }
+}
+
+/* HP pendek / layar sempit sekali */
+@media (max-width: 900px) and (orientation: portrait) and (max-height: 680px), (max-width: 600px) and (max-height: 680px) {
+    .story-step {
+        --sh: min(29svh, 58vw);
+    }
+
+    .story-photos {
+        top: 10svh;
+    }
+
+    .story-text {
+        padding: 18px 22px;
+        bottom: 8svh;
+    }
+
+    .story-text p {
+        font-size: 13.5px;
+    }
+}
+/* =========================================
+   SENTUHAN (layar sentuh) — andong
+========================================= */
+
+/* Swipe vertikal di jalur tetap menggulung halaman; andong sendiri tetap "none" supaya bisa diseret */
+.time-track {
+    touch-action: pan-y;
+}
+
+@media (max-width: 900px) and (orientation: portrait), (max-width: 600px) {
+    /* sisakan ±28px di tepi layar: menghindari gestur "geser dari tepi" untuk kembali di iOS/Android */
+    .time-track {
+        --track-w: min(calc(var(--stage-w) * 1.9), calc(100vw - 56px));
+        margin-left: calc((100% - var(--track-w)) / 2);   /* tengah layar (menimpa margin -6% lama) */
+        margin-right: 0;
+    }
+}
+/* =========================================
+   ANDONG — susunan baru: foto → petunjuk → andong → keterangan
+========================================= */
+
+.time-hint {
+    position: relative;
+    z-index: 2;                                  /* di atas area transparan bingkai */
+    margin-top: clamp(22px, 3vw, 34px);          /* di bawah foto (jarak ini menyesuaikan area kosong file bingkai) */
+    color: var(--text-green, #2A7478);
+    font-size: clamp(12.5px, 1.3vw, 14.5px);
+    font-weight: 700;                            /* tebal supaya terlihat */
+    letter-spacing: 0.5px;
+}
+
+.time-track {
+    margin-top: clamp(0px, 0.6vw, 8px);          /* andong sedikit lebih ke bawah (di bawah petunjuk) */
+}
+
+.time-caption {
+    margin-top: clamp(4px, 0.8vw, 10px);         /* keterangan di bawah andong (tidak menimpa lagi) */
+}
+
+/* Hilangkan garis tipis di sambungan kurva dan latar krem */
+.chapter-page .chapter-content {
+    background: none;                 /* matikan gradasi bertitik henti keras */
+}
+
+.chapter-page .chapter-content::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(var(--overlap) - 2px);  /* naik 2px menimpa bagian transparan */
+    bottom: 0;
+    background: var(--cream);
+    z-index: -1;                      /* di belakang isi konten, tapi masih di dalam section */
+    pointer-events: none;
+}
