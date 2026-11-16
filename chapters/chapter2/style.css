@@ -1025,3 +1025,10 @@ body {
 .chapter-page .chapter-content {
     margin-top: -2px;
 }
+
+@media (max-width: 900px) {
+    #book::after {
+        content: none !important;
+        display: none !important;
+    }
+}
