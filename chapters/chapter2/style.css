@@ -1,0 +1,1027 @@
+/* =========================================
+   GLOBAL
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    min-height: 100%;
+    overflow-x: clip;
+    touch-action: pan-y;
+    font-family: "Nunito", sans-serif;
+}
+
+/* =========================================
+   MENU ICON — KANAN ATAS
+========================================= */
+
+.menu-toggle {
+    position: fixed;
+    top: 35px;
+    right: 35px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 300;
+    transition: opacity 0.15s ease;
+}
+
+.menu-toggle.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: none;
+}
+
+.menu-toggle img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* =========================================
+   SIDEBAR — MASUK DARI KANAN
+========================================= */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 380px;
+    max-width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    padding: 100px 45px 45px;
+    overflow-y: auto;
+    background: #f6ecd8; /* kertas utama */
+    z-index: 350;
+    transform: translateX(110%);
+    transition: transform 0.7s cubic-bezier(.77, 0, .18, 1);
+
+    /* tiga lapisan kertas */
+    box-shadow:
+        -8px 8px 0 #eee5d2,
+        -17px 17px 0 #e4d6b8,
+        -20px 20px 32px rgba(42, 29, 22, 0.18);
+}
+
+.sidebar.active {
+    transform: translateX(0);
+}
+
+/* Tombol X */
+
+.sidebar .sidebar-close {
+    position: absolute;
+    top: 20px;
+    right: 22px;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: #542d25;
+    font-family: Arial, sans-serif;
+    font-size: 36px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 5;
+}
+
+/* Daftar menu */
+
+.sidebar nav {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    width: 100%;
+}
+
+/* The Story sampai Chapter 5 */
+
+.sidebar .sidebar-main {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    width: 100%;
+}
+
+.sidebar nav a {
+    display: block;
+    width: 100%;
+    flex: 0 0 auto;
+    border: none;
+    background: transparent;
+    color: #542d25;
+    font-family: "Im Fell DW Pica", serif;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 1.4;
+    text-align: left;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+
+.sidebar nav a:hover {
+    color: #9b6a35;
+}
+
+/* About: garis pemisah */
+
+.sidebar .sidebar-about {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(84, 45, 37, 0.4);
+}
+
+.sidebar .sidebar-about button {
+    appearance: none;
+    -webkit-appearance: none;
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    outline-offset: 4px;
+    background: transparent;
+    color: #542d25;
+    font-family: "Im Fell DW Pica", serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.4;
+    text-align: left;
+    cursor: pointer;
+}
+
+.sidebar .sidebar-about button:hover {
+    color: #9b6a35;
+}
+
+.sidebar .sidebar-about button:focus-visible {
+    outline: 1px solid #542d25;
+}
+
+/* =========================================
+   ABOUT OVERLAY
+========================================= */
+
+.about-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.88);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.about-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.about-image {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: min(90vw, 900px);
+    max-height: 85vh;
+    object-fit: contain;
+}
+
+.about-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-size: 42px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.about-close:hover {
+    opacity: 0.7;
+}
+
+/* =========================================
+   CHAPTER OPENING
+========================================= */
+
+.chapter-opening {
+    position: relative;
+    width: 100%;
+    height: 150vh;
+    background: #f2eada;
+}
+
+.opening-sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    min-height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: #f2eada;
+}
+
+.paper-wrapper {
+    position: relative;
+    width: min(760px, 85vw);
+    max-width: 100%;
+    flex-shrink: 0;
+}
+
+.chapter-paper {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    transform-origin: center center;
+    will-change: transform;
+}
+
+.chapter-heading {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5%;
+    color: #60483A;
+    text-align: center;
+    pointer-events: none;
+    transform: translateX(6px);
+}
+
+.chapter-heading p {
+    margin-bottom: 12px;
+    font-size: 14px;
+    letter-spacing: 5px;
+}
+
+.chapter-heading h1 {
+    font-family: "Im Fell DW Pica", serif;
+    font-size: 55px;
+    font-weight: 400;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.curve-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    height: 0;
+    z-index: 4;
+    pointer-events: none;
+    will-change: width, height;
+}
+
+.curve-bottom svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* =========================================
+   CHAPTER CONTENT
+========================================= */
+
+/* Versi dasar (untuk halaman tanpa class .chapter-page) */
+.chapter-content {
+    position: relative;
+    min-height: 250vh;
+    padding-top: 120px;
+    background: linear-gradient(
+        to bottom,
+        #927760 0%,
+        #CDBB9D 45%,
+        #EFE5D2 100%
+    );
+}
+
+/* Background 3 warna */
+.chapter-page .chapter-content {
+    min-height: 130vh;
+    padding-top: 0;
+    padding-bottom: 80px;
+}
+
+.content-container {
+    width: min(1100px, 92vw);
+    margin: 0 auto;
+}
+
+.paper-frame {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    width: 100%;
+    height: calc(100% + 80px);
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.video-frame {
+    max-width: 100%;
+}
+
+/* =========================================
+   BUKU INTERAKTIF — CHAPTER 2
+========================================= */
+
+.book-section {
+    position: relative;
+    top: -200px; /* flipbook dinaikkan */
+    width: 100%;
+    max-width: 100%;
+    padding: 50px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    perspective: 1800px;
+    touch-action: pan-y;
+}
+
+.book-instruction {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    margin-bottom: 25px;
+    padding: 0 10px;
+    color: #f2e5cf;
+    font-size: clamp(10px, 1.5vw, 13px);
+    letter-spacing: clamp(1px, 0.4vw, 3px);
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* Wadah buku */
+
+.book-container {
+    position: relative;
+    z-index: 1;
+    isolation: isolate;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 12px 0;
+    overflow: visible;
+    perspective: 1400px;
+}
+
+/* Bayangan bawah buku */
+
+.book-container::before {
+    content: "";
+    position: absolute;
+    left: 15%;
+    right: 15%;
+    bottom: 0;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(45, 27, 15, 0.12);
+    filter: blur(8px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Area flipbook */
+
+#book.book {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    margin: 0 auto;
+    filter: drop-shadow(5px 8px 7px rgba(46, 28, 16, 0.18));
+}
+
+/* Halaman buku */
+
+#book .book-page {
+    overflow: hidden;
+    background: #e7d5b5;
+    box-shadow:
+        inset -8px 0 12px rgba(65, 43, 25, 0.07),
+        inset 0 0 2px rgba(69, 43, 25, 0.04);
+}
+
+#book .book-page img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Sampul keras */
+
+#book .book-page.--hard,
+#book .book-page[data-density="hard"] {
+    border-radius: 3px 7px 7px 3px;
+    box-shadow:
+        inset 5px 0 7px rgba(255, 230, 190, 0.18),
+        inset -5px 0 8px rgba(42, 24, 13, 0.22),
+        3px 4px 0 #8a6546,
+        5px 6px 0 #63432f,
+        8px 9px 14px rgba(40, 23, 13, 0.25);
+}
+
+#book .book-page[data-density="hard"] img {
+    border-radius: 3px 7px 7px 3px;
+}
+
+/* Garis punggung buku */
+
+#book::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 16px;
+    transform: translateX(-50%);
+    background: linear-gradient(
+        to right,
+        rgba(70, 42, 24, 0.10),
+        rgba(245, 225, 190, 0.08),
+        rgba(65, 39, 23, 0.12)
+    );
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Tombol pembuka buku */
+
+.book-start {
+    position: relative;
+    z-index: 3;
+    margin-top: 24px;
+    padding: 0 8px;
+    text-align: center;
+    color: #542d25;
+}
+
+.book-start p {
+    margin-bottom: 15px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #542d25;
+}
+
+.book-start button {
+    padding: 12px 22px;
+    border: 1px solid #72513a;
+    background: #72513a;
+    color: #f8ecd8;
+    font-family: inherit;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.book-start button:hover {
+    background: #30231D;
+    border-color: #30231D;
+}
+
+.book-start[hidden],
+.book-controls[hidden] {
+    display: none !important;
+}
+
+/* Kontrol halaman */
+
+.book-controls {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    max-width: 100%;
+    margin: 24px auto;
+    color: #542d25;
+}
+
+.book-controls button {
+    padding: 8px 16px;
+    border: 1px solid #72513a;
+    background: #72513a;
+    color: #f8ecd8;
+    cursor: pointer;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.book-controls button:hover {
+    background: #30231D;
+    border-color: #30231D;
+}
+
+/* =========================================
+   DEKORASI KERTAS DAN BUNGA
+========================================= */
+
+.deco {
+    position: absolute;
+    z-index: 0;
+    height: auto;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.deco-flower {
+    bottom: 6%;
+    left: -12%;
+    width: min(270px, 22vw);
+}
+
+.deco-flower-right {
+    top: 110px;
+    right: calc((100% - 100vw) / 2 + 60px);
+    width: min(200px, 16vw);
+}
+
+/* =========================================
+   SOUND BUTTON — KIRI BAWAH
+========================================= */
+
+.sound-toggle {
+    position: fixed;
+    left: 30px;
+    bottom: 30px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 400;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.sound-toggle img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.sound-toggle:focus-visible {
+    outline: 2px solid #542d25;
+    outline-offset: 4px;
+}
+
+/* =========================================
+   RESPONSIVE — TABLET
+========================================= */
+
+@media (max-width: 900px) {
+    .menu-toggle {
+        top: 25px;
+        right: 25px;
+    }
+
+    .sidebar {
+        width: 340px;
+        max-width: 86vw;
+        padding: 78px 28px 26px;
+    }
+
+    .sidebar .sidebar-main {
+        gap: 18px;
+    }
+
+    .sidebar nav a {
+        font-size: 23px;
+    }
+
+    .sidebar .sidebar-about {
+        margin-top: 18px;
+        padding-top: 16px;
+    }
+
+    .sidebar .sidebar-about button {
+        font-size: 22px;
+    }
+
+    .paper-wrapper {
+        width: 85vw;
+    }
+
+    .chapter-heading h1 {
+        font-size: 42px;
+    }
+
+    .content-container {
+        width: 94vw;
+    }
+
+    .video-frame {
+        width: 100%;
+    }
+
+    /* Cek: kalau class ini tidak dipakai di HTML, hapus 3 blok berikut */
+    .video-content {
+        width: 86%;
+    }
+
+    .frame-clip {
+        width: 24%;
+    }
+
+    .frame-seal {
+        width: 16%;
+    }
+
+    .book-section {
+        padding: 40px 20px;
+    }
+
+    .book-container {
+        max-width: 650px;
+    }
+
+    .deco-flower-right {
+        width: 20vw;
+        right: calc((100% - 100vw) / 2 + 40px);
+    }
+
+    .sound-toggle {
+        left: 24px;
+        bottom: 24px;
+        width: 44px;
+        height: 44px;
+    }
+
+    .about-overlay {
+        padding: 16px;
+    }
+
+    .about-image {
+        max-width: 94vw;
+        max-height: 80vh;
+    }
+
+    .about-close {
+        top: 12px;
+        right: 16px;
+        font-size: 36px;
+    }
+}
+
+/* =========================================
+   RESPONSIVE — HP
+========================================= */
+
+@media (max-width: 600px) {
+    .menu-toggle {
+        top: 18px;
+        right: 18px;
+        width: 44px;
+        height: 44px;
+    }
+
+    /* Sidebar */
+
+    .sidebar {
+        width: min(340px, 88vw);
+        max-width: 88vw;
+        padding: 74px 24px 24px;
+    }
+
+    .sidebar .sidebar-close {
+        top: 16px;
+        right: 16px;
+        width: 40px;
+        height: 40px;
+        font-size: 34px;
+    }
+
+    .sidebar .sidebar-main {
+        gap: 17px;
+    }
+
+    .sidebar nav a {
+        font-size: 21px;
+    }
+
+    .sidebar .sidebar-about {
+        margin-top: 16px;
+        padding-top: 15px;
+    }
+
+    .sidebar .sidebar-about button {
+        font-size: 21px;
+    }
+
+    /* Opening */
+
+    .chapter-opening {
+        height: 130svh;
+    }
+
+    .opening-sticky {
+        height: 100svh;
+        min-height: 0;
+    }
+
+    .paper-wrapper {
+        width: 110vw;
+        max-width: none;
+    }
+
+    .chapter-paper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 110vw;
+        max-width: none;
+        transform: translate(-50%, -50%);
+    }
+
+    .chapter-heading {
+        width: 100%;
+        padding: 24px;
+        transform: none;
+    }
+
+    .chapter-heading p {
+        margin-bottom: 14px;
+        font-size: 11px;
+        letter-spacing: 3px;
+    }
+
+    .chapter-heading h1 {
+        width: 100%;
+        max-width: 340px;
+        font-size: clamp(27px, 7vw, 34px);
+        line-height: 1.25;
+        white-space: normal;
+        overflow-wrap: normal;
+        text-wrap: balance;
+    }
+
+    /* Konten */
+
+    .chapter-content {
+        min-height: auto;
+        padding: 65px 0 50px;
+    }
+
+    .chapter-page .chapter-content {
+        min-height: 110svh;
+    }
+
+    .content-container {
+        max-width: none;
+        padding: 0 14px;
+    }
+
+    .video-frame {
+        position: relative;
+        padding: 14% 7% 13%;
+        margin: 0 auto;
+    }
+
+    .paper-frame {
+        top: 50%;
+        height: 100%;
+        object-fit: fill;
+    }
+
+    /* Buku */
+
+    .book-section {
+        top: -120px;
+        padding: 30px 12px;
+    }
+
+    .book-container {
+        max-width: 100%;
+        padding: 8px 0;
+    }
+
+    .book-instruction {
+        margin-bottom: 18px;
+        font-size: 11px;
+        letter-spacing: 1.5px;
+    }
+
+    .book-start {
+        margin-top: 18px;
+    }
+
+    .book-start p {
+        font-size: 15px;
+    }
+
+    .book-start button {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    .book-controls {
+        gap: 8px;
+        margin-top: 18px;
+    }
+
+    .book-controls button {
+        padding: 9px 12px;
+        font-size: 12px;
+    }
+
+    /* Dekorasi */
+
+    .deco-flower-right {
+        top: 60px;
+        width: 24vw;
+        right: calc((100% - 100vw) / 2 + 20px);
+    }
+
+    /* Sound */
+
+    .sound-toggle {
+        left: 18px;
+        bottom: 18px;
+        width: 42px;
+        height: 42px;
+    }
+}
+
+/* =========================================
+   RESPONSIVE — HP SANGAT KECIL
+========================================= */
+
+@media (max-width: 360px) {
+    .sidebar {
+        width: 90vw;
+        max-width: 90vw;
+        padding-right: 20px;
+        padding-left: 22px;
+    }
+
+    .sidebar .sidebar-main {
+        gap: 15px;
+    }
+
+    .sidebar nav a {
+        font-size: 19px;
+    }
+
+    .sidebar .sidebar-about button {
+        font-size: 20px;
+    }
+
+    .book-section {
+        padding-right: 8px;
+        padding-left: 8px;
+    }
+
+    .book-controls {
+        gap: 6px;
+    }
+
+    .book-controls button {
+        padding: 8px 10px;
+        font-size: 11px;
+    }
+
+    .sound-toggle {
+        left: 14px;
+        bottom: 14px;
+        width: 38px;
+        height: 38px;
+    }
+}
+
+/* =========================================
+   REDUCE MOTION — AKSESIBILITAS
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .sidebar {
+        transition-duration: 0.01ms;
+    }
+}
+
+/* =========================================
+   OPENING — TEKS + POLAROID + BUNGA KERING
+========================================= */
+
+.chapter-heading {
+    flex-direction: row;
+    gap: clamp(28px, 6vw, 96px);
+    padding: 0 8%;
+}
+
+/* Teks di kiri */
+.chapter-heading .heading-text {
+    flex: 0 1 auto;
+    max-width: min(520px, 45%);
+    text-align: center;
+}
+
+.chapter-heading .heading-text h1 {
+    font-size: clamp(34px, 4.2vw, 55px);
+    white-space: normal;       /* sebelumnya nowrap, sekarang boleh turun baris */
+    text-wrap: balance;
+}
+
+/* Polaroid di kanan */
+.chapter-heading .heading-photo {
+    position: relative;
+    flex: 0 0 auto;
+    width: clamp(220px, 26vw, 400px);
+}
+
+.heading-photo .photo-polaroid {
+    position: relative;
+    z-index: 1;                /* polaroid di depan */
+    display: block;
+    width: 100%;
+    height: auto;
+    transform: rotate(6deg);
+    filter: drop-shadow(0 10px 18px rgba(60, 40, 30, 0.22));
+}
+
+/* Bunga kering di DEPAN polaroid, dibalik supaya tangkainya di kanan */
+.heading-photo .photo-flower {
+    position: absolute;
+    top: 12%;
+    left: -10%;
+    z-index: 0;               /* di atas polaroid (polaroid z-index: 1) */
+    width: 32%;
+    height: auto;
+    transform: scaleX(-1);    /* balik horizontal */
+}
+
+/* HP: teks di atas, polaroid di bawah */
+@media (max-width: 600px) {
+    .chapter-heading {
+        flex-direction: column;
+        gap: 28px;
+        padding: 24px;
+    }
+
+    .chapter-heading .heading-text {
+        width: 100%;
+        max-width: 340px;
+    }
+
+    .chapter-heading .heading-text h1 {
+        font-size: clamp(26px, 7vw, 32px);
+    }
+
+    .chapter-heading .heading-photo {
+        width: min(52vw, 220px);
+    }
+}
+
+/* Tutup celah garis tipis di sambungan opening dan konten */
+.chapter-page .chapter-content {
+    margin-top: -2px;
+}

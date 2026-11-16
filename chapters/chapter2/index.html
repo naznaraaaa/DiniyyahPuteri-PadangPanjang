@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Chapter 2 — Diniyyah Puteri</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../assets/global/fonts/fonts.css">
+</head>
+<body>
+
+    <!-- SOUND BUTTON -->
+    <button
+        class="sound-toggle"
+        id="soundToggle"
+        type="button"
+        aria-label="Nyalakan musik"
+        aria-pressed="false"
+    >
+        <img
+            id="soundIcon"
+            src="../../assets/global/icons/SoundOff.png"
+            alt=""
+        >
+    </button>
+
+    <!-- MENU BUTTON -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">
+        <img src="../../assets/global/icons/iconmenu.png" alt="">
+    </button>
+
+    <!-- BACKGROUND MUSIC -->
+    <audio
+        id="backgroundMusic"
+        src="../../assets/global/sound/Backsound.mp3"
+        loop
+        preload="auto"
+    ></audio>
+
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+        <button
+            class="sidebar-close"
+            id="sidebarClose"
+            type="button"
+            aria-label="Tutup menu"
+        >
+            ×
+        </button>
+
+        <nav>
+            <div class="sidebar-main">
+                <a href="../chaptermenu/index.html">00 — The Story</a>
+                <a href="../chapter1/index.html">01 — Chapter 1</a>
+                <a href="../chapter2/index.html">02 — Chapter 2</a>
+                <a href="../chapter3/index.html">03 — Chapter 3</a>
+                <a href="../chapter4/index.html">04 — Chapter 4</a>
+                <a href="../chapter5/index.html">05 — Chapter 5</a>
+            </div>
+
+            <div class="sidebar-about">
+                <button
+                    type="button"
+                    id="aboutToggle"
+                    aria-controls="aboutOverlay"
+                    aria-expanded="false"
+                >
+                    About
+                </button>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- ABOUT OVERLAY -->
+    <div
+        class="about-overlay"
+        id="aboutOverlay"
+        aria-hidden="true"
+    >
+        <button
+            type="button"
+            class="about-close"
+            id="aboutClose"
+            aria-label="Close About"
+        >
+            &times;
+        </button>
+
+        <img
+            src="../../assets/global/img/about.png"
+            alt="About"
+            class="about-image"
+        >
+    </div>
+
+    <!-- CHAPTER -->
+    <main class="chapter-page">
+
+        <!-- OPENING -->
+        <section class="chapter-opening">
+            <div class="opening-sticky">
+
+                <!-- PAPER -->
+                <svg
+                    id="chapterTransition"
+                    class="chapter-paper"
+                    viewBox="0 0 200 200"
+                    preserveAspectRatio="xMidYMid meet"
+                    role="img"
+                    aria-label="Chapter 2"
+                >
+                    <path
+                        transform="translate(-40 -40) scale(1.5)"
+                        d="M100 8 C112 8 119 15 130 18 C143 21 151 29 158 39 C169 47 174 58 176 70 C181 82 177 94 179 105 C178 118 171 127 166 138 C160 150 149 155 139 163 C128 172 116 172 104 177 C91 181 80 175 68 173 C55 169 47 161 37 153 C27 145 24 133 20 121 C15 109 19 97 17 85 C18 73 24 63 30 53 C36 41 47 36 58 29 C70 20 81 20 91 13 C94 10 97 9 100 8 Z"
+                        fill="#f2eada"
+                    />
+                </svg>
+
+                    <!-- CHAPTER HEADING -->
+                <div class="chapter-heading">
+
+                    <div class="heading-text">
+                        <p>CHAPTER 02</p>
+                        <h1>Siapa Sosok Rahmah El Yunusiyyah Itu?</h1>
+                    </div>
+
+                    <div class="heading-photo">
+                        <img
+                            class="photo-polaroid"
+                            src="../../assets/chapter2/decorations/polaroid.png"
+                            alt="Foto Rahmah El Yunusiyyah"
+                        >
+                        <img
+                            class="photo-flower"
+                            src="../../assets/chapter2/decorations/flower-dry.png"
+                            alt=""
+                            aria-hidden="true"
+                        >
+                    </div>
+
+                </div>
+
+                <!-- KURVA TRANSISI -->
+                <div class="curve-bottom">
+                    <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+                        <path fill="#927760" d="M0,200 C360,0 1080,0 1440,200 L1440,320 L0,320 Z"></path>
+                    </svg>
+                </div>
+
+            </div><!-- /.opening-sticky -->
+        </section><!-- /.chapter-opening -->
+
+<!-- CONTENT -->
+<section class="chapter-content">
+    <div class="content-container">
+
+        <!-- INTERACTIVE BOOK -->
+        <div class="book-section">
+
+            <!-- DEKORASI -->
+            <img
+                class="deco deco-flower-right"
+                src="../../assets/chapter2/decorations/flower-right.png"
+                alt=""
+                aria-hidden="true"
+            >
+
+            <img
+                class="deco deco-flower"
+                src="../../assets/chapter2/decorations/flower-left.png"
+                alt=""
+                aria-hidden="true"
+            >
+
+            <p class="book-instruction">
+                SEBUAH KISAH DALAM LEMBARAN WAKTU
+            </p>
+
+            <div class="book-container">
+
+                <div id="book" class="book">
+
+                    <!-- SAMPUL DEPAN -->
+                    <div class="book-page" data-density="hard">
+                        <img
+                            src="../../assets/chapter2/images/cover_depan.png"
+                            alt="Sampul depan buku Diniyyah Puteri"
+                        >
+                    </div>
+
+                    <!-- HALAMAN ISI -->
+                    <div class="book-page" data-density="soft">
+                        <img src="../../assets/chapter2/images/page1.png" alt="Halaman 1">
+                    </div>
+
+                    <div class="book-page" data-density="soft">
+                        <img src="../../assets/chapter2/images/page2.png" alt="Halaman 2">
+                    </div>
+
+                    <div class="book-page" data-density="soft">
+                        <img src="../../assets/chapter2/images/pagee3.png" alt="Halaman 3">
+                    </div>
+
+                    <div class="book-page" data-density="soft">
+                        <img src="../../assets/chapter2/images/pagee4.png" alt="Halaman 4">
+                    </div>
+
+                    <div class="book-page" data-density="soft">
+                        <img src="../../assets/chapter2/images/pagee5.png" alt="Halaman 5">
+                    </div>
+
+                    <div class="book-page" data-density="soft">
+                        <img src="../../assets/chapter2/images/pagee6.png" alt="Halaman 6">
+                    </div>
+
+                    <div class="book-page" data-density="soft">
+                        <img src="../../assets/chapter2/images/pagee7.png" alt="Halaman 7">
+                    </div>
+
+                    <div class="book-page" data-density="soft">
+                        <img src="../../assets/chapter2/images/pagee8.png" alt="Halaman 8">
+                    </div>
+
+                    <div class="book-page" data-density="soft">
+                        <img src="../../assets/chapter2/images/pagee9.png" alt="Halaman 9">
+                    </div>
+
+                    <div class="book-page" data-density="soft">
+                        <img src="../../assets/chapter2/images/pagee10.png" alt="Halaman 10">
+                    </div>
+
+                    <!-- SAMPUL BELAKANG -->
+                    <div class="book-page" data-density="hard">
+                        <img
+                            src="../../assets/chapter2/images/cover_belakang.png"
+                            alt="Sampul belakang buku Diniyyah Puteri"
+                        >
+                    </div>
+
+                </div>
+
+                <!-- PETUNJUK BUKA BUKU -->
+                <div class="book-start" id="bookStart">
+                    <p>Kisah perjalanan pendidikan perempuan</p>
+
+                    <button type="button" id="openBookButton">
+                        Klik untuk Membuka
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- KONTROL HALAMAN -->
+            <div class="book-controls" id="bookControls" hidden>
+                <button
+                    type="button"
+                    id="prevPage"
+                    aria-label="Halaman sebelumnya"
+                >
+                    &#8592;
+                </button>
+
+                <span id="pageNumber">Sampul</span>
+
+                <button
+                    type="button"
+                    id="nextPage"
+                    aria-label="Halaman berikutnya"
+                >
+                    &#8594;
+                </button>
+            </div>
+
+        </div><!-- /.book-section -->
+
+    </div><!-- /.content-container -->
+</section>
+
+    </main>
+
+    <!-- GSAP -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+    <!-- LIBRARY ANIMASI HALAMAN BUKU -->
+    <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+
+    <!-- JAVASCRIPT WEBSITE -->
+    <script src="script.js"></script>
+    <script src="book.js"></script>
+
+</body>
+</html>
