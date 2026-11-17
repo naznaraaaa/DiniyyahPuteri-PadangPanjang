@@ -1364,3 +1364,87 @@ color: var(--text-green);
     z-index: -1;                      /* di belakang isi konten, tapi masih di dalam section */
     pointer-events: none;
 }
+/* =========================================
+   PETUNJUK SCROLL — bagian foto-foto (bg hijau)
+========================================= */
+
+.scroll-hint {
+    position: absolute;
+    left: 50%;
+    bottom: clamp(16px, 3.5vh, 32px);
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 18px;
+    border: 1px solid rgba(243, 235, 221, 0.4);
+    border-radius: 999px;
+    background: rgba(38, 122, 127, 0.78);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    color: #F3EBDD;
+    font-family: "Nunito", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    white-space: nowrap;
+    pointer-events: none;
+    transform: translateX(-50%);
+    animation: hint-in 0.8s ease 0.4s both;
+}
+
+.scroll-hint-touch {
+    display: none;                       /* teks untuk layar sentuh */
+}
+
+@media (hover: none) {
+    .scroll-hint-desktop { display: none; }
+    .scroll-hint-touch   { display: inline; }
+}
+
+.scroll-hint-arrow {
+    width: 9px;
+    height: 9px;
+    margin-top: -3px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    animation: hint-bounce 1.4s ease-in-out infinite;
+}
+
+@keyframes hint-bounce {
+    0%, 100% { transform: translateY(0) rotate(45deg);  opacity: 0.5; }
+    50%      { transform: translateY(5px) rotate(45deg); opacity: 1; }
+}
+
+@keyframes hint-in {
+    from { opacity: 0; transform: translate(-50%, 10px); }
+    to   { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@media (max-width: 900px) and (orientation: portrait), (max-width: 600px) {
+    .scroll-hint {
+        bottom: 12px;
+        padding: 7px 14px;
+        font-size: 12px;
+        gap: 8px;
+    }
+
+    /* kartu teks naik sedikit supaya tidak menempel ke petunjuk */
+    .story-text {
+        bottom: calc(9svh + 14px);
+    }
+}
+
+@media (max-width: 900px) and (orientation: portrait) and (max-height: 680px), (max-width: 600px) and (max-height: 680px) {
+    .story-text {
+        bottom: calc(8svh + 14px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scroll-hint,
+    .scroll-hint-arrow {
+        animation: none;
+    }
+}
