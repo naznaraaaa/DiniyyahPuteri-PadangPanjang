@@ -556,6 +556,34 @@ body {
 }
 
 /* =========================================
+   PETUNJUK: KARTU ALUMNI BISA DIKLIK
+========================================= */
+
+.alumni-hint {
+    margin-top: clamp(24px, 3.4vw, 44px);
+    color: var(--ink);
+    font-family: "Nunito", sans-serif;
+    font-size: clamp(13px, 1.3vw, 16px);
+    font-weight: 700;            
+    letter-spacing: 0.04em;
+    text-align: center;
+}
+
+/* Teks saat kartu tertutup / terbuka */
+.hint-open { display: none; }
+
+.alumni-grid.has-open + .alumni-hint .hint-default { display: none; }
+.alumni-grid.has-open + .alumni-hint .hint-open    { display: inline; }
+
+/* "Klik" di komputer, "Ketuk" di layar sentuh */
+.hint-tap { display: none; }
+
+@media (hover: none) {
+    .hint-click { display: none; }
+    .hint-tap   { display: inline; }
+}
+
+/* =========================================
    PENUTUP (setelah kartu alumni)
 ========================================= */
 
