@@ -444,6 +444,8 @@ body {
         #000 calc(100% - var(--fade-r)),
         transparent 100%
     );
+   -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
     transition: --fade-l 0.5s ease, --fade-r 0.5s ease;
 }
 
