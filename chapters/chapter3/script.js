@@ -71,8 +71,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!soundToggle || !soundIcon || !backgroundMusic) return;
 
-        const soundOn = "../../assets/global/icons/SoundOn.png";
-        const soundOff = "../../assets/global/icons/SoundOff.png";
+        const soundOn = "../../assets/global/icons/SoundOn.webp";
+        const soundOff = "../../assets/global/icons/SoundOff.webp";
 
         const setState = (playing) => {
             soundIcon.src = playing ? soundOn : soundOff;
@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             label: "Sebuah Gagasan",
             teaser: "Bagaimana jika perempuan tidak pernah diberi kesempatan untuk menentukan hidupnya sendiri?",
-            img: "PerempuanDulu.png", // <-- ganti kalau nama file card 1 berbeda
+            img: "PerempuanDulu.webp", // <-- ganti kalau nama file card 1 berbeda
             paragraphs: [
                 "Rahmah melihat banyak perempuan di sekitarnya hidup dalam keterbatasan, direndahkan, ditindas, bahkan tidak memiliki ruang untuk memperoleh pendidikan yang layak.",
                 "Pengalamannya belajar di Diniyah School yang didirikan kakaknya, Zainuddin Labay El-Yunusy, membuat Rahmah semakin memahami pentingnya pendidikan. Ia juga memperdalam ilmu agama di Surau Jembatan Besi dan lingkungan pengajaran Haji Rasul. Dalam lingkungan belajar tersebut, jumlah murid perempuan masih sangat sedikit dibandingkan laki-laki.",
@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             label: "1 November 1923",
             teaser: "Bukan sekadar sekolah baru. Sebuah ruang yang sebelumnya belum tersedia untuk mereka.",
-            img: "Berdiri.jpg",
+            img: "Berdiri.webp",
             paragraphs: [
                 "Keinginan Rahmah untuk mendirikan lembaga pendidikan khusus perempuan semakin kuat. Pada tahun 1923, ia membicarakan cita-cita tersebut dengan kakaknya, Zainuddin Labay El-Yunusy.",
                 "Ketika ditanya apakah ia sanggup mendirikan sekolah putri yang dicita-citakannya, Rahmah menyatakan kesanggupannya. Gagasan tersebut kemudian disampaikan kepada teman-temannya yang tergabung dalam organisasi PMDS dan memperoleh dukungan.",
@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             label: "Dari Yang Ada",
             teaser: "Sebuah sekolah sederhana. Puluhan perempuan datang. Dan tidak semua orang menyukainya.",
-            img: "Awal.png",
+            img: "Awal.webp",
             paragraphs: [
                 "Pada masa awal berdirinya, Diniyyah Puteri memulai perjalanan dengan fasilitas yang masih sederhana dan jumlah murid sebanyak 71 orang. Sebagian besar murid bahkan merupakan perempuan yang telah berumah tangga.",
                 "Rahmah tidak hanya ingin menghadirkan tempat belajar, tetapi juga membangun sistem pendidikan yang sesuai dengan kebutuhan perempuan. Pada awalnya, pembelajaran lebih banyak berfokus pada pengetahuan agama dan bahasa Arab.",
@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             label: "Lalu, Sekolah Itu Runtuh",
             teaser: "28 Juni 1926. Dalam satu hari, tempat yang dibangun dengan susah payah itu hancur.",
-            img: "gempa.jpg",
+            img: "gempa.webp",
             paragraphs: [
                 "Perjalanan Diniyyah Puteri tidak selalu berjalan mudah. Pada tahun 1926, gempa besar mengguncang Padang Panjang dan menyebabkan kerusakan pada banyak bangunan, termasuk gedung Perguruan Diniyyah Puteri.",
                 "Bencana tersebut menjadi pukulan berat bagi Rahmah. Sekolah yang baru dirintis sekitar sepuluh bulan sebelumnya harus menghadapi kerusakan besar. Para murid terpaksa dipulangkan, sementara kegiatan pendidikan tidak dapat berjalan seperti sebelumnya.",
@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             label: "Mereka Kembali",
             teaser: "Bangunannya boleh runtuh, tetapi cita-cita pendidikannya tidak ikut berhenti.",
-            img: "Berdakwah.jpg",
+            img: "Berdakwah.webp",
             paragraphs: [
                 "Setelah gempa menghancurkan bangunan perguruan, Rahmah tidak membiarkan kegiatan pendidikan berhenti begitu saja.",
                 "Sekitar 45 hari setelah bencana, Rahmah bersama para guru dan bantuan siswa Thawalib School Padang Panjang mulai mendirikan bangunan sementara dari bambu dengan atap daun rumbia dan lantai tanah. Bangunan sederhana tersebut digunakan untuk melanjutkan kegiatan pendidikan.",
@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             label: "Melewati Zaman",
             teaser: "Ketika sekolah itu mulai tumbuh, zaman kembali mengujinya.",
-            img: "AsramaDiniyyah.jpg",
+            img: "AsramaDiniyyah.webp",
             paragraphs: [
                 "Seiring berjalannya waktu, Diniyyah Puteri harus menjalani perjalanan di tengah berbagai perubahan sosial dan politik. Masa kolonial Belanda, pendudukan Jepang, hingga kemerdekaan Indonesia menjadi bagian dari periode yang turut memengaruhi perjalanan Rahmah dan perguruannya.",
                 "Pada masa pendudukan Jepang, kondisi pendidikan dan kehidupan masyarakat mengalami tekanan. Pada awal 1942, ketika situasi semakin tidak aman, Rahmah mengambil langkah untuk mengevakuasi sekitar 100 murid ke daerah Bunga Tanjung, Pitalah. Ia turut menanggung kebutuhan para murid selama masa evakuasi.",
@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             label: "Terus Bertumbuh",
             teaser: "Diniyyah Puteri terus berkembang dan meneruskan gagasan Rahmah.",
-            img: "DiniyyahNow.jpg",
+            img: "DiniyyahNow.webp",
             paragraphs: [
                 "Perjuangan Rahmah tidak berhenti pada mempertahankan sekolah yang telah didirikannya. Ia terus berupaya mengembangkan sistem pendidikan agar mampu menjawab kebutuhan masyarakat.",
                 "Kurikulum yang pada awalnya berfokus pada pengetahuan agama dan bahasa Arab kemudian mengalami penyempurnaan. Pendidikan keterampilan, pelajaran kewanitaan, dan berbagai kegiatan pembelajaran lainnya turut dikembangkan.",
@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             btn.innerHTML = `
                 <span class="memory-pin">
-                    <img src="${IMG}Pin.png" alt="" draggable="false">
+                    <img src="${IMG}Pin.webp" alt="" draggable="false">
                 </span>
                 <span class="mc-photo">
                     <img src="${IMG}${data.img}" alt="${data.label}" draggable="false">
