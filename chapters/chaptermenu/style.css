@@ -149,8 +149,8 @@ body.about-open {
     width: clamp(42px, 5.2vw, 70px);
     height: auto;
     filter:
-        drop-shadow(0 2px 3px rgba(35, 20, 15, 0.35))
-        drop-shadow(0 5px 8px rgba(35, 20, 15, 0.25));
+        drop-shadow(0 3px 4px rgba(25, 15, 10, 0.45))
+        drop-shadow(0 6px 10px rgba(25, 15, 10, 0.3));
     transition: filter 0.3s ease;
 }
 
