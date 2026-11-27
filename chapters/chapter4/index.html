@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Chapter 4 — Diniyyah Puteri</title>
+
+    <!-- Font -->
+    <link rel="stylesheet" href="../../assets/global/fonts/fonts.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- SOUND BUTTON -->
+    <button
+        class="sound-toggle"
+        id="soundToggle"
+        type="button"
+        aria-label="Nyalakan musik"
+        aria-pressed="false"
+    >
+        <img
+            id="soundIcon"
+            src="../../assets/global/icons/SoundOff.webp"
+            alt=""
+        >
+    </button>
+
+    <!-- MENU BUTTON -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">
+        <img src="../../assets/global/icons/iconmenu.webp" alt="">
+    </button>
+
+    <!-- BACKGROUND MUSIC -->
+    <audio
+        id="backgroundMusic"
+        src="../../assets/global/sound/Backsound.mp3"
+        loop
+        preload="auto"
+    ></audio>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+        <button
+            class="sidebar-close"
+            id="sidebarClose"
+            type="button"
+            aria-label="Tutup menu"
+        >×</button>
+
+        <nav>
+            <div class="sidebar-main">
+                <a href="../chaptermenu/index.html">00 — The Story</a>
+                <a href="../chapter1/index.html">01 — Chapter 1</a>
+                <a href="../chapter2/index.html">02 — Chapter 2</a>
+                <a href="../chapter3/index.html">03 — Chapter 3</a>
+                <a href="../chapter4/index.html">04 — Chapter 4</a>
+                <a href="../chapter5/index.html">05 — Chapter 5</a>
+            </div>
+
+            <div class="sidebar-about">
+                <button
+                    type="button"
+                    id="aboutToggle"
+                    aria-controls="aboutOverlay"
+                    aria-expanded="false"
+                >About</button>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- ABOUT OVERLAY -->
+    <div class="about-overlay" id="aboutOverlay" aria-hidden="true">
+        <button
+            type="button"
+            class="about-close"
+            id="aboutClose"
+            aria-label="Close About"
+        >&times;</button>
+
+        <img
+            src="../../assets/global/img/about.webp"
+            alt="About"
+            class="about-image"
+        >
+    </div>
+
+    <!-- CHAPTER -->
+    <main class="chapter-page">
+
+        <!-- OPENING -->
+        <section class="chapter-opening">
+            <div class="opening-sticky">
+
+                <!-- PAPER (dipakai transisi dari menu) -->
+                <svg
+                    id="chapterTransition"
+                    class="chapter-paper"
+                    viewBox="0 0 200 200"
+                    preserveAspectRatio="xMidYMid meet"
+                    role="img"
+                    aria-label="Chapter 4"
+                >
+                    <path
+                        transform="translate(-40 -40) scale(1.5)"
+                        d="M100 8 C112 8 119 15 130 18 C143 21 151 29 158 39 C169 47 174 58 176 70 C181 82 177 94 179 105 C178 118 171 127 166 138 C160 150 149 155 139 163 C128 172 116 172 104 177 C91 181 80 175 68 173 C55 169 47 161 37 153 C27 145 24 133 20 121 C15 109 19 97 17 85 C18 73 24 63 30 53 C36 41 47 36 58 29 C70 20 81 20 91 13 C94 10 97 9 100 8 Z"
+                        fill="#8d9d86"
+                    />
+                </svg>
+
+                <!-- CHAPTER HEADING -->
+                <div class="chapter-heading">
+                    <p>CHAPTER 04</p>
+                    <h1>Semangat Yang Terus Bergerak</h1>
+                </div>
+
+                <!-- KURVA TRANSISI -->
+                <div class="curve-bottom">
+                    <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+                        <path fill="#7E9680" d="M0,200 C360,0 1080,0 1440,200 L1440,320 L0,320 Z"></path>
+                    </svg>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONTENT -->
+        <section class="chapter-content">
+            <div class="content-container">
+
+                <!-- ============================================
+                     ALUMNI — MULAI
+                     ============================================ -->
+
+                <!-- PENGANTAR -->
+                <div class="alumni-intro">
+                    <div class="intro-paper">
+                        <p>
+                            Dari ruang belajar Diniyyah Puteri, lahir
+                            perempuan-perempuan yang kemudian membawa nilai
+                            dan semangatnya ke jalan mereka masing-masing.
+                        </p>
+
+                        <img class="intro-seal"
+                             src="../../assets/chapter4/images/seal.webp"
+                             alt="" aria-hidden="true">
+                    </div>
+                </div>
+
+                <!-- KARTU ALUMNI -->
+<section class="alumni" id="alumni" aria-labelledby="alumniTitle">
+
+    <h2 class="alumni-title" id="alumniTitle">ALUMNI</h2>
+
+    <div class="alumni-grid" id="alumniGrid">
+
+        <!-- ALUMNI 1 -->
+        <article class="alumni-card">
+            <div class="alumni-panel" id="panel-rasuna" role="region" aria-label="Tentang Rasuna Said">
+                <h3>Rasuna Said (1910–1965)</h3>
+                <p>
+                    Rasuna Said menempuh pendidikan di Diniyyah Puteri
+                    dan kemudian menjadi guru di sana. Dari lingkungan
+                    pendidikan tersebut, ia berkembang menjadi tokoh yang
+                    aktif dalam pergerakan dan memperjuangkan pendidikan
+                    serta hak perempuan. Ia kemudian dikenal sebagai salah
+                    satu pahlawan nasional Indonesia.
+                </p>
+            </div>
+
+            <button class="alumni-photo" type="button"
+                    aria-expanded="false" aria-controls="panel-rasuna">
+                <img src="../../assets/chapter4/images/rasuna-said.webp"
+                     alt="Foto Rasuna Said">
+                <span class="alumni-name">Rasuna Said</span>
+            </button>
+        </article>
+
+        <!-- ALUMNI 2 -->
+        <article class="alumni-card">
+            <div class="alumni-panel" id="panel-nurhayati" role="region" aria-label="Tentang Nurhayati Subakat">
+                <h3>Nurhayati Subakat (1950–)</h3>
+                <p>
+                    Lahir di Padang Panjang, Nurhayati Subakat pernah
+                    menempuh pendidikan di Diniyyah Puteri sebelum
+                    melanjutkan studi Farmasi di ITB. Setelah berkarier
+                    sebagai apoteker dan bekerja di industri kosmetik,
+                    ia memulai usaha dari rumah pada 1985 yang kemudian
+                    berkembang menjadi Paragon, perusahaan di balik
+                    Wardah dan sejumlah merek lainnya.
+                </p>
+            </div>
+
+            <button class="alumni-photo" type="button"
+                    aria-expanded="false" aria-controls="panel-nurhayati">
+                <img src="../../assets/chapter4/images/nurhayati-subakat.webp"
+                     alt="Foto Nurhayati Subakat">
+                <span class="alumni-name">Nurhayati Subakat</span>
+            </button>
+        </article>
+
+                <!-- ALUMNI 3 -->
+        <article class="alumni-card">
+            <div class="alumni-panel" id="panel-aisyah" role="region" aria-label="Tentang Aisyah Aminy">
+                <h3>Aisyah Aminy (1931–2021)</h3>
+                <p>
+                    Aisyah Aminy lahir di Padang Panjang, Sumatera Barat,
+                    pada 1 Desember 1931. Ia menempuh pendidikan di Diniyyah
+                    Puteri sebelum melanjutkan studi hukum di Universitas
+                    Islam Indonesia, Yogyakarta. Setelah berkarier sebagai
+                    guru, dosen, dan advokat, Aisyah terjun ke dunia politik
+                    melalui Partai Persatuan Pembangunan. Ia kemudian menjadi
+                    anggota DPR/MPR selama bertahun-tahun dan dikenal sebagai
+                    salah satu perempuan yang aktif memperjuangkan aspirasi
+                    masyarakat serta keterlibatan perempuan dalam politik
+                    Indonesia.
+                </p>
+            </div>
+
+            <button class="alumni-photo" type="button"
+                    aria-expanded="false" aria-controls="panel-aisyah">
+                <img src="../../assets/chapter4/images/aisyah-aminy.webp"
+                     alt="Foto Aisyah Aminy">
+                <span class="alumni-name">Aisyah Aminy</span>
+            </button>
+        </article>
+
+        <!-- ALUMNI 4 -->
+        <article class="alumni-card">
+            <div class="alumni-panel" id="panel-aishah" role="region" aria-label="Tentang Aishah Ghani">
+                <h3>Aishah Ghani (1923–2013)</h3>
+                <p>
+                    Aishah Ghani lahir pada 15 Desember 1923 di Hulu Langat,
+                    Selangor, Malaysia. Pada 1936 hingga 1939, ia menempuh
+                    pendidikan di Diniyah Puteri Padang Panjang, kemudian
+                    melanjutkan pendidikan di Maktab Perguruan Tinggi Islam
+                    di Padang. Ia memulai karier sebagai wartawan dan aktif
+                    dalam gerakan politik serta perjuangan kemerdekaan Malaya.
+                    Aishah kemudian menjadi tokoh penting dalam politik
+                    Malaysia dan pernah menjabat sebagai Menteri Kebajikan
+                    Masyarakat, sekaligus dikenal atas kiprahnya dalam
+                    memperjuangkan kesejahteraan dan peran perempuan.
+                </p>
+            </div>
+
+            <button class="alumni-photo" type="button"
+                    aria-expanded="false" aria-controls="panel-aishah">
+                <img src="../../assets/chapter4/images/aishah-ghani.webp"
+                     alt="Foto Aishah Ghani">
+                <span class="alumni-name">Aishah Ghani</span>
+            </button>
+        </article>
+
+        <!-- ALUMNI 5 -->
+        <article class="alumni-card">
+            <div class="alumni-panel" id="panel-shamsiah" role="region" aria-label="Tentang Shamsiah Fakeh">
+                <h3>Shamsiah Fakeh (1924–2008)</h3>
+                <p>
+                    Shamsiah Fakeh lahir pada 1924 di Kuala Pilah, Negeri
+                    Sembilan, Malaysia. Pada usia muda, ia menempuh pendidikan
+                    agama di Padang Panjang, Sumatera Barat, termasuk di
+                    sekolah yang didirikan oleh Rahmah El Yunusiyah. Setelah
+                    kembali ke Malaya, Shamsiah mulai aktif dalam gerakan
+                    nasionalis. Ia kemudian memimpin Angkatan Wanita Sedar
+                    (AWAS), organisasi perempuan yang terlibat dalam
+                    perjuangan kemerdekaan Malaya. Namanya dikenang sebagai
+                    salah satu tokoh perempuan yang berani mengambil peran
+                    dalam gerakan politik dan perubahan sosial pada masa
+                    kolonial.
+                </p>
+            </div>
+
+            <button class="alumni-photo" type="button"
+                    aria-expanded="false" aria-controls="panel-shamsiah">
+                <img src="../../assets/chapter4/images/shamsiah-fakeh.webp"
+                     alt="Foto Shamsiah Fakeh">
+                <span class="alumni-name">Shamsiah Fakeh</span>
+            </button>
+        </article>
+
+        <!-- ALUMNI 6 -->
+        <article class="alumni-card">
+            <div class="alumni-panel" id="panel-zakiah" role="region" aria-label="Tentang Zakiah Daradjat">
+                <h3>Zakiah Daradjat (1929–2013)</h3>
+                <p>
+                    Zakiah Daradjat lahir di Jorong Koto Marapak, Nagari
+                    Lambah, Kabupaten Agam, Sumatera Barat. Ia menempuh
+                    pendidikan di Diniyyah Puteri Padang Panjang sebelum
+                    melanjutkan studi di Yogyakarta dan Universitas Ain
+                    Shams, Kairo, hingga meraih gelar doktor dalam bidang
+                    psikologi. Sepanjang hidupnya, Zakiah dikenal sebagai
+                    psikolog, pendidik, dan tokoh pemikiran Islam yang
+                    berkontribusi dalam bidang kesehatan mental serta
+                    pendidikan agama di Indonesia.
+                </p>
+            </div>
+
+            <button class="alumni-photo" type="button"
+                    aria-expanded="false" aria-controls="panel-zakiah">
+                <img src="../../assets/chapter4/images/zakiah-daradjat.webp"
+                     alt="Foto Zakiah Daradjat">
+                <span class="alumni-name">Zakiah Daradjat</span>
+            </button>
+        </article>
+
+        <!-- ALUMNI 7 -->
+        <article class="alumni-card">
+            <div class="alumni-panel" id="panel-tinur" role="region" aria-label="Tentang Tinur M. Nur">
+                <h3>Tinur M. Nur (1914–1982)</h3>
+                <p>
+                    Tinur M. Nur merupakan ibunda dari sastrawan Indonesia,
+                    Taufik Ismail. Pada masa perjuangan kemerdekaan
+                    Indonesia tahun 1945, ia bertugas sebagai penyiar Radio
+                    Republik Indonesia (RRI) di Yogyakarta. Ia secara khusus
+                    menyiarkan berita dan siaran dalam bahasa Arab untuk
+                    kawasan Timur Tengah. Berita kemerdekaan Indonesia
+                    tersebut disampaikan hingga ke Mesir dan Palestina, yang
+                    menjadi bagian dari negara-negara pertama yang mengakui
+                    kemerdekaan Indonesia.
+                </p>
+            </div>
+
+            <button class="alumni-photo" type="button"
+                    aria-expanded="false" aria-controls="panel-tinur">
+                <img src="../../assets/chapter4/images/tinur-m-nur.webp"
+                     alt="Foto Tinur M. Nur">
+                <span class="alumni-name">Tinur M. Nur</span>
+            </button>
+        </article>
+
+    </div><!-- /.alumni-grid -->
+
+    <!-- PETUNJUK: kartu bisa diklik -->
+    <p class="alumni-hint" aria-live="polite">
+        <span class="hint-default">
+            <span class="hint-click">Klik</span><span class="hint-tap">Ketuk</span>
+            foto untuk membaca kisahnya
+        </span>
+
+        <span class="hint-open">
+            <span class="hint-click">Klik</span><span class="hint-tap">Ketuk</span>
+            lagi untuk kembali
+        </span>
+    </p>
+</section><!-- /.alumni -->
+
+                <!-- PENUTUP -->
+                <section class="closing" id="closing">
+                    <div class="closing-inner">
+                        <p class="closing-label">TERUS BERGERAK</p>
+
+                        <h2 class="closing-title">
+                            Dari satu ruang belajar, semangat itu melangkah jauh.
+                        </h2>
+
+                        <p class="closing-text">
+                            Mereka menempuh jalan yang berbeda, tetapi membawa
+                            keyakinan yang sama, bahwa pendidikan mampu mengubah
+                            arah hidup perempuan.
+                        </p>
+                    </div>
+                </section>
+
+<!-- ============================================
+     ALUMNI — SELESAI
+     ============================================ -->
+
+            </div><!-- /.content-container -->
+        </section><!-- /.chapter-content -->
+
+    </main>
+
+    <!-- GSAP -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
