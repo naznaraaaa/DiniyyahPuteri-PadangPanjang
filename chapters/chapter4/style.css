@@ -1,961 +1,292 @@
-/* =========================================
-   GLOBAL
-========================================= */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: auto;
-    overscroll-behavior-y: auto;
-    overflow-x: hidden;
-    height: auto;
-}
-
-body {
-    width: 100%;
-    max-width: 100%;
-    min-height: 100%;
-    overflow-x: clip;      /* clip (bukan hidden) supaya sticky bekerja */
-    overflow-y: visible;
-    touch-action: pan-y;
-    font-family: "Nunito", sans-serif;
-    color: #542d25;
-}
-
-
-/* =========================================
-   MENU ICON — KANAN ATAS
-========================================= */
-
-.menu-toggle {
-    position: fixed;
-    top: 35px;
-    right: 35px;
-    left: auto;
-    width: 48px;
-    height: 48px;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    z-index: 300;
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transition: opacity 0.15s ease;
-}
-
-.menu-toggle.is-hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: none;
-}
-
-.menu-toggle img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-
-/* =========================================
-   SIDEBAR — MASUK DARI KANAN
-========================================= */
-
-.sidebar {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: auto;
-    width: 380px;
-    max-width: 100%;
-    height: 100vh;
-    height: 100dvh;
-    padding: 100px 45px 45px;
-    overflow-y: auto;
-
-    background: #f6ecd8;
-
-    z-index: 350;
-    transform: translateX(110%);
-    transition: transform 0.7s cubic-bezier(.77, 0, .18, 1);
-
-    box-shadow:
-        -8px 8px 0 #eee5d2,
-        -17px 17px 0 #e4d6b8,
-        -20px 20px 32px rgba(42, 29, 22, 0.18);
-}
-
-.sidebar.active {
-    transform: translateX(0);
-}
-
-.sidebar .sidebar-close {
-    position: absolute;
-    top: 20px;
-    right: 22px;
-    left: auto;
-    width: 42px;
-    height: 42px;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    background: transparent;
-    color: #542d25;
-    font-family: Arial, sans-serif;
-    font-size: 36px;
-    line-height: 1;
-    cursor: pointer;
-    z-index: 5;
-}
-
-.sidebar nav {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-}
-
-.sidebar .sidebar-main {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 20px;
-    width: 100%;
-}
-
-.sidebar nav a {
-    display: block;
-    width: 100%;
-    flex: 0 0 auto;
-    padding: 0;
-    margin: 0;
-    border: none;
-    background: transparent;
-    color: #542d25;
-    font-family: "IM Fell DW Pica", serif;
-    font-size: 26px;
-    font-weight: 400;
-    line-height: 1.4;
-    text-align: left;
-    text-decoration: none;
-    overflow-wrap: anywhere;
-}
-
-.sidebar nav a:hover {
-    color: #9b6a35;
-}
-
-.sidebar .sidebar-about {
-    display: block;
-    width: 100%;
-    margin-top: 20px;
-    padding-top: 18px;
-    border-top: 1px solid rgba(84, 45, 37, 0.4);
-}
-
-.sidebar .sidebar-about button {
-    appearance: none;
-    -webkit-appearance: none;
-    display: block;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    border: none;
-    border-radius: 0;
-    background: transparent;
-    box-shadow: none;
-    color: #542d25;
-    font-family: "IM Fell DW Pica", serif;
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 1.4;
-    text-align: left;
-    cursor: pointer;
-}
-
-.sidebar .sidebar-about button:hover {
-    color: #9b6a35;
-}
-
-.sidebar .sidebar-about button:focus-visible {
-    outline: 1px solid #542d25;
-    outline-offset: 4px;
-}
-
-
-/* =========================================
-   SOUND BUTTON — KIRI BAWAH
-========================================= */
-
-.sound-toggle {
-    position: fixed;
-    left: 30px;
-    bottom: 30px;
-    top: auto;
-    right: auto;
-    width: 48px;
-    height: 48px;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    z-index: 400;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.sound-toggle img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-.sound-toggle:focus-visible {
-    outline: 2px solid #542d25;
-    outline-offset: 4px;
-}
-
-
-/* =========================================
-   CHAPTER OPENING
-   (warna kertas = warna bulatan Chapter 4)
-========================================= */
-
-.chapter-opening {
-    position: relative;
-    width: 100%;
-    height: 135vh;                 /* area scroll animasi kurva */
-    background: #8d9d86;
-}
-
-.opening-sticky {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    height: 100vh;
-    height: 100svh;
-    min-height: 500px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    background: #8d9d86;
-}
-
-/* Kertas (dipakai script.js untuk menyamakan ukuran transisi dari menu) */
-.chapter-paper {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 0;
-    width: 100%;
-    height: auto;
-    max-width: none;
-    transform: translate(-50%, -50%);
-    transform-origin: center center;
-    pointer-events: none;
-    will-change: transform;
-}
-
-.chapter-heading {
-    position: relative;
-    z-index: 3;
-    padding: 0 5%;
-    text-align: center;
-    color: #F3EBDD;
-    pointer-events: none;
-}
-
-.chapter-heading p {
-    margin-bottom: 14px;
-    font-size: 14px;
-    letter-spacing: 5px;
-}
-
-.chapter-heading h1 {
-    margin: 0;
-    font-family: "IM Fell DW Pica", serif;
-    font-size: 55px;
-    font-weight: 400;
-    line-height: 1.2;
-}
-
-.chapter-heading h1 .heading-line {
-    display: block;
-}
-
-/* Kurva transisi (tingginya dianimasikan oleh GSAP) */
-.curve-bottom {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 100vw;
-    height: 0;
-    z-index: 4;
-    pointer-events: none;
-    will-change: width, height;
-}
-
-.curve-bottom svg {
-    display: block;
-    width: 100%;
-    height: 100%;
-}
-
-
-/* =========================================
-   CHAPTER CONTENT — GRADIEN #7E9680 → #F3EBDD
-========================================= */
-
-.chapter-page .chapter-content {
-    position: relative;
-    padding: 0 0 110px;
-    background: linear-gradient(
-        to bottom,
-        #7E9680 0%,
-        #F3EBDD 65%,
-        #F3EBDD 100%
-    );
-}
-
-.content-container {
-    width: min(1100px, 92vw);
-    margin: 0 auto;
-}
-
-
-/* =========================================
-   ALUMNI — PENGANTAR (kertas prangko + segel)
-========================================= */
-
-.alumni-intro {
-    position: relative;
-    padding-top: clamp(0px, 1vw, 16px);
-}
-
-.intro-paper {
-    position: relative;
-    width: min(760px, 92%);
-    margin: 0 auto;
-    padding: clamp(36px, 6vw, 84px) clamp(30px, 7vw, 100px);
-    text-align: center;
-
-    /* Ganti nama file kalau aset kertasmu berbeda */
-    background-color: #fbf8f1;
-    background-image: url("../../assets/chapter4/images/paper-stamp.webp");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    border-radius: 6px;
-}
-
-.intro-paper p {
-    color: #2f5b5b;
-    font-family: "IM Fell DW Pica", serif;
-    font-size: clamp(18px, 2.3vw, 32px);
-    line-height: 1.5;
-}
-
-.intro-seal {
-    position: absolute;
-    right: -8%;                         /* makin negatif = makin ke kanan */
-    bottom: -18%;                       /* makin negatif = makin turun */
-    width: clamp(90px, 13vw, 180px);
-    height: auto;
-    pointer-events: none;
-}
-
-
-/* =========================================
-   ALUMNI — KARTU (5 kartu dalam satu baris)
-========================================= */
-
-.alumni {
-    /* Ukuran dasar kartu: ubah --card-w untuk memperbesar/memperkecil semua */
-    --alumni-w: min(1320px, 96vw);                    /* lebar area kartu (boleh lebih lebar dari container) */
-    --card-w: calc(var(--alumni-w) / 8.3);            /* 7 kartu + jarak muat satu baris */
-    --card-h: calc(var(--card-w) * 1.93);
-    --open-w: min(calc(var(--card-w) * 6.4), 100%);   /* lebar kartu saat terbuka */
-    --gap: calc(var(--card-w) * 0.2);
-    --radius: calc(var(--card-w) * 0.16);
-
-    --panel-bg: #7792A3;
-    --panel-text: #f2f0e8;
-    --ink: #2f5555;
-
-    padding-top: clamp(150px, 16vw, 240px);
-
-    /* melebar keluar dari container supaya 7 kartu tidak terlalu kecil */
-    margin-left: calc((100% - var(--alumni-w)) / 2);
-    margin-right: calc((100% - var(--alumni-w)) / 2);
-}
-
-.alumni-title {
-    margin-bottom: clamp(26px, 4vw, 54px);
-    text-align: center;
-    color: var(--ink);
-    font-family: "IM Fell DW Pica", serif;
-    font-size: clamp(32px, 4vw, 56px);
-    font-weight: 400;
-    letter-spacing: 3px;
-}
-
-.alumni-grid {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    width: 100%;
-}
-
-/* Satu kartu */
-.alumni-card {
-    position: relative;
-    flex: 0 0 auto;
-    width: var(--card-w);
-    height: var(--card-h);
-    transition:
-        width 0.8s cubic-bezier(.65, 0, .25, 1),
-        margin 0.8s cubic-bezier(.65, 0, .25, 1),
-        opacity 0.5s ease;
-}
-
-.alumni-card + .alumni-card {
-    margin-left: var(--gap);
-}
-
-/* Saat ada yang terbuka: hilangkan jarak, kartu terbuka melebar */
-.alumni-grid.has-open .alumni-card {
-    margin-left: 0;
-}
-
-.alumni-card.is-open {
-    width: var(--open-w);
-}
-
-/* Kartu lain menghilang */
-.alumni-card.is-hidden {
-    width: 0;
-    opacity: 0;
-    overflow: hidden;
-    pointer-events: none;
-}
-
-/* Foto (tombol) — selalu di kiri, di atas panel */
-.alumni-photo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    width: var(--card-w);
-    height: 100%;
-    padding: 0;
-    border: none;
-    border-radius: var(--radius);
-    overflow: hidden;
-    background: #cfd6cf;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-    box-shadow: 0 10px 24px rgba(40, 55, 45, 0.18);
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-
-.alumni-card:not(.is-open) .alumni-photo:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 16px 30px rgba(40, 55, 45, 0.26);
-}
-
-.alumni-photo:focus-visible {
-    outline: 3px solid #305959;
-    outline-offset: 4px;
-}
-
-.alumni-photo img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Label nama di bawah foto */
-.alumni-name {
-    position: absolute;
-    left: 50%;
-    bottom: 4%;
-    transform: translateX(-50%);
-    width: max-content;
-    max-width: 92%;
-    text-align: center;
-    padding: 0.12em 0.55em;
-    background: #fff;
-    color: #3b575f;
-    font-family: "Cherry Swash", "IM Fell DW Pica", serif;
-    font-size: max(10px, calc(var(--card-w) * 0.078));
-    font-weight: 700;
-    line-height: 1.25;
-    white-space: normal;
-}
-
-/* Panel penjelasan — di belakang foto, muncul saat kartu terbuka */
-.alumni-panel {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;      /* tengah dibuat lewat margin auto, supaya teks panjang tetap bisa digulir */
-    overflow-y: auto;
-    scrollbar-width: thin;
-    padding:
-        clamp(14px, 2vw, 28px)
-        clamp(18px, 3.4vw, 52px)
-        clamp(14px, 2vw, 28px)
-        calc(var(--card-w) + clamp(16px, 2.8vw, 44px));
-    border-radius: var(--radius);
-    background: var(--panel-bg);
-    color: var(--panel-text);
-    cursor: pointer;
-
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
-}
-
-.alumni-card.is-open .alumni-panel {
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.5s ease 0.45s, visibility 0s linear 0.45s;
-}
-
-.alumni-panel h3 {
-    margin-bottom: 1.1em;
-    font-family: "Nunito", sans-serif;
-    margin-top: auto;
-    font-size: clamp(14px, 1.35vw, 19px);
-    font-style: italic;
-    font-weight: 800;
-    line-height: 1.3;
-}
-
-.alumni-panel p {
-    font-family: "Nunito", sans-serif;
-    margin-bottom: auto;
-    font-size: clamp(12px, 1.15vw, 16px);
-    line-height: 1.6;
-    text-align: justify;
-    hyphens: auto;
-}
-
-
-/* =========================================
-   PETUNJUK: KARTU ALUMNI BISA DIKLIK
-========================================= */
-
-.alumni-hint {
-    margin-top: clamp(24px, 3.4vw, 44px);
-    color: var(--ink);
-    font-family: "Nunito", sans-serif;
-    font-size: clamp(13px, 1.3vw, 16px);
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-align: center;
-}
-
-/* Teks saat kartu tertutup / terbuka */
-.hint-open { display: none; }
-
-.alumni-grid.has-open + .alumni-hint .hint-default { display: none; }
-.alumni-grid.has-open + .alumni-hint .hint-open    { display: inline; }
-
-/* "Klik" di komputer, "Ketuk" di layar sentuh */
-.hint-tap { display: none; }
-
-@media (hover: none) {
-    .hint-click { display: none; }
-    .hint-tap   { display: inline; }
-}
-
-
-/* =========================================
-   PENUTUP (setelah kartu alumni)
-========================================= */
-
-.closing {
-    width: min(720px, 90%);
-    margin: 0 auto;
-    /* padding atas yang besar = jarak scroll sebelum kalimat muncul */
-    padding: clamp(120px, 18vw, 260px) 0 clamp(40px, 8vw, 110px);
-    text-align: center;
-    color: #2f5555;
-}
-
-.closing-label {
-    margin-bottom: 22px;
-    font-family: "Nunito", sans-serif;
-    font-size: clamp(11px, 1.1vw, 14px);
-    letter-spacing: 5px;
-}
-
-.closing-title {
-    margin-bottom: 26px;
-    font-family: "IM Fell DW Pica", serif;
-    font-size: clamp(28px, 4vw, 52px);
-    font-weight: 400;
-    line-height: 1.3;
-}
-
-.closing-text {
-    max-width: 560px;
-    margin: 0 auto;
-    color: #4c6b66;
-    font-family: "Nunito", sans-serif;
-    font-size: clamp(15px, 1.5vw, 18px);
-    line-height: 1.9;
-}
-
-
-/* =========================================
-   ABOUT OVERLAY
-========================================= */
-
-.about-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 24px;
-    background: rgba(0, 0, 0, 0.88);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.about-overlay.active {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-}
-
-.about-image {
-    display: block;
-    width: auto;
-    height: auto;
-    max-width: min(90vw, 900px);
-    max-height: 85vh;
-    object-fit: contain;
-}
-
-.about-close {
-    position: absolute;
-    top: 20px;
-    right: 25px;
-    border: none;
-    background: transparent;
-    color: #fff;
-    font-size: 42px;
-    line-height: 1;
-    cursor: pointer;
-    z-index: 2;
-}
-
-.about-close:hover {
-    opacity: 0.7;
-}
-
-
-/* =========================================
-   RESPONSIVE — TABLET (≤ 900px)
-========================================= */
-
-@media (max-width: 900px) {
-    .menu-toggle {
-        top: 25px;
-        right: 25px;
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* =========================================
+       TOMBOL MENU
+    ========================================= */
+    const menuToggle = document.getElementById("menuToggle");
+
+    if (menuToggle) {
+        menuToggle.classList.remove("is-hidden");
+        menuToggle.style.setProperty("display", "flex", "important");
+        menuToggle.style.setProperty("opacity", "1", "important");
+        menuToggle.style.setProperty("visibility", "visible", "important");
+        menuToggle.style.setProperty("pointer-events", "auto", "important");
     }
 
-    .sidebar {
-        width: 340px;
-        max-width: 86vw;
-        padding: 78px 28px 26px;
+    /* =========================================
+       SIDEBAR
+    ========================================= */
+    const sidebar = document.getElementById("sidebar");
+    const sidebarClose = document.getElementById("sidebarClose");
+
+    const openSidebar = () => sidebar?.classList.add("active");
+    const closeSidebar = () => sidebar?.classList.remove("active");
+
+    menuToggle?.addEventListener("click", openSidebar);
+    sidebarClose?.addEventListener("click", closeSidebar);
+
+    /* =========================================
+       ABOUT OVERLAY
+    ========================================= */
+    const aboutToggle = document.getElementById("aboutToggle");
+    const aboutOverlay = document.getElementById("aboutOverlay");
+    const aboutClose = document.getElementById("aboutClose");
+
+    function openAbout() {
+        if (!aboutOverlay) return;
+        aboutOverlay.classList.add("active");
+        aboutOverlay.setAttribute("aria-hidden", "false");
+        aboutToggle?.setAttribute("aria-expanded", "true");
     }
 
-    .sidebar .sidebar-main {
-        gap: 18px;
+    function closeAbout() {
+        if (!aboutOverlay) return;
+        aboutOverlay.classList.remove("active");
+        aboutOverlay.setAttribute("aria-hidden", "true");
+        aboutToggle?.setAttribute("aria-expanded", "false");
     }
 
-    .sidebar nav a {
-        font-size: 23px;
+    aboutToggle?.addEventListener("click", openAbout);
+    aboutClose?.addEventListener("click", closeAbout);
+
+    aboutOverlay?.addEventListener("click", (event) => {
+        if (event.target === aboutOverlay) closeAbout();
+    });
+
+    /* =========================================
+       SOUND TOGGLE
+    ========================================= */
+    (() => {
+        const soundToggle = document.getElementById("soundToggle");
+        const soundIcon = document.getElementById("soundIcon");
+        const backgroundMusic = document.getElementById("backgroundMusic");
+
+        if (!soundToggle || !soundIcon || !backgroundMusic) return;
+
+        const soundOn = "../../assets/global/icons/SoundOn.webp";
+        const soundOff = "../../assets/global/icons/SoundOff.webp";
+
+        const setState = (playing) => {
+            soundIcon.src = playing ? soundOn : soundOff;
+            soundToggle.setAttribute("aria-pressed", String(playing));
+            soundToggle.setAttribute(
+                "aria-label",
+                playing ? "Matikan musik" : "Nyalakan musik"
+            );
+        };
+
+        backgroundMusic.volume = 0.5;
+        backgroundMusic.pause();
+        setState(false);
+
+        soundToggle.addEventListener("click", async () => {
+            if (backgroundMusic.paused) {
+                try {
+                    await backgroundMusic.play();
+                } catch (error) {
+                    console.error("Musik gagal diputar:", error);
+                }
+            } else {
+                backgroundMusic.pause();
+            }
+        });
+
+        backgroundMusic.addEventListener("play", () => setState(true));
+        backgroundMusic.addEventListener("pause", () => setState(false));
+    })();
+
+    /* =========================================
+       KARTU ALUMNI
+       Klik kartu  → kartu melebar & menampilkan penjelasan,
+                     kartu lain menghilang.
+       Klik lagi / klik di luar / tekan Esc → kembali semula.
+    ========================================= */
+    const alumniGrid = document.getElementById("alumniGrid");
+    const alumniCards = alumniGrid
+        ? Array.from(alumniGrid.querySelectorAll(".alumni-card"))
+        : [];
+
+    let refreshTimer;
+    function refreshScrollLater() {
+        clearTimeout(refreshTimer);
+        refreshTimer = setTimeout(() => {
+            if (typeof ScrollTrigger !== "undefined") ScrollTrigger.refresh();
+        }, 900);
     }
 
-    .sidebar .sidebar-about {
-        margin-top: 18px;
-        padding-top: 16px;
+    function setCardState(card, state) {
+        const photo = card.querySelector(".alumni-photo");
+
+        card.classList.toggle("is-open", state === "open");
+        card.classList.toggle("is-hidden", state === "hidden");
+        photo?.setAttribute("aria-expanded", String(state === "open"));
+
+        // Kartu yang disembunyikan tidak boleh bisa difokus keyboard
+        card.inert = state === "hidden";
     }
 
-    .sidebar .sidebar-about button {
-        font-size: 22px;
+    function openCard(target) {
+        alumniGrid.classList.add("has-open");
+        alumniCards.forEach((card) =>
+            setCardState(card, card === target ? "open" : "hidden")
+        );
+        refreshScrollLater();
     }
 
-    .sound-toggle {
-        left: 24px;
-        bottom: 24px;
-        width: 44px;
-        height: 44px;
+    function closeCards() {
+        alumniGrid.classList.remove("has-open");
+        alumniCards.forEach((card) => setCardState(card, "closed"));
+        refreshScrollLater(); 
     }
 
-    .chapter-heading h1 {
-        font-size: 42px;
+    if (alumniGrid) {
+        alumniCards.forEach((card) => {
+            const photo = card.querySelector(".alumni-photo");
+            const panel = card.querySelector(".alumni-panel");
+
+            photo?.addEventListener("click", () => {
+                card.classList.contains("is-open")
+                    ? closeCards()
+                    : openCard(card);
+            });
+
+            // Klik pada panel penjelasan juga menutup kartu
+            panel?.addEventListener("click", closeCards);
+        });
+
+        // Klik di luar area kartu menutup kartu
+        document.addEventListener("click", (event) => {
+            if (!alumniGrid.classList.contains("has-open")) return;
+            if (event.target.closest(".alumni-card")) return;
+            closeCards();
+        });
     }
 
-    .content-container {
-        width: 94vw;
+    /* =========================================
+       ESC: tutup kartu, About, dan sidebar
+    ========================================= */
+    document.addEventListener("keydown", (event) => {
+        if (event.key !== "Escape") return;
+        closeAbout();
+        closeSidebar();
+        if (alumniGrid?.classList.contains("has-open")) closeCards();
+    });
+
+    /* =========================================
+       ANIMASI SCROLL (GSAP + ScrollTrigger)
+       Bagian di atas tetap berjalan walau GSAP gagal dimuat.
+    ========================================= */
+    const hasGsap =
+        typeof gsap !== "undefined" &&
+        typeof ScrollTrigger !== "undefined";
+
+    if (!hasGsap) {
+        console.error("GSAP atau ScrollTrigger belum dimuat.");
+        return;
     }
 
-    .alumni {
-        --card-w: calc(var(--alumni-w) / 4.7);     /* 4 kartu per baris */
+    gsap.registerPlugin(ScrollTrigger);
+
+    const paper = document.querySelector(".chapter-paper");
+    const heading = document.querySelector(".chapter-heading");
+    const curve = document.querySelector(".curve-bottom");
+
+    /* Samakan ukuran kertas dengan akhir transisi dari menu */
+    const isEnteringFromMenu =
+        sessionStorage.getItem("fromChapterMenu") === "chapter4";
+
+    if (paper && isEnteringFromMenu) {
+        const savedWidth = Number(sessionStorage.getItem("paperFinalWidth"));
+        const savedHeight = Number(sessionStorage.getItem("paperFinalHeight"));
+
+        if (savedWidth > 0 && savedHeight > 0) {
+            paper.style.setProperty("width", `${savedWidth}px`, "important");
+            paper.style.setProperty("height", `${savedHeight}px`, "important");
+            paper.style.setProperty("max-width", "none", "important");
+            paper.style.setProperty("max-height", "none", "important");
+            paper.style.setProperty("object-fit", "contain", "important");
+        }
     }
 
-    .alumni-grid {
-        flex-wrap: wrap;
-        row-gap: calc(var(--gap) * 1.5);
+    sessionStorage.removeItem("fromChapterMenu");
+
+    if (paper) {
+        gsap.set(paper, {
+            scale: 1,
+            transformOrigin: "center center",
+            force3D: false
+        });
     }
 
-    /* kartu pertama tiap baris tidak punya jarak kiri */
-    .alumni-card:nth-child(4n + 1) {
-        margin-left: 0;
+    if (heading) {
+        gsap.set(heading, { opacity: 1, y: 0 });
     }
 
-    /* saat satu kartu dibuka, kartu lain langsung hilang (tidak diciutkan) supaya tidak loncat baris */
-    .alumni-card.is-hidden {
-        display: none;
-    }
-}
+    /* Kurva membesar mengikuti scroll */
+    if (curve) {
+        gsap.set(curve, { xPercent: -50 });
 
-
-/* =========================================
-   RESPONSIVE — HP (≤ 700px)
-   Kartu berderet 2 per baris
-========================================= */
-
-@media (max-width: 700px) {
-    .alumni {
-        --card-w: 38vw;
-        --open-w: 100%;
-        --gap: 5vw;
-        margin-left: 0;
-        margin-right: 0;
+        gsap.to(curve, {
+            height: "160vh",
+            width: "200vw",
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".chapter-opening",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: true,
+                invalidateOnRefresh: true
+            }
+        });
     }
 
-    .alumni-grid {
-        flex-wrap: wrap;
-        row-gap: 24px;
+    /* Judul memudar saat mulai scroll */
+    if (heading) {
+        gsap.to(heading, {
+            opacity: 0,
+            y: -40,
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".chapter-opening",
+                start: "top top",
+                end: "+=300",
+                scrub: true
+            }
+        });
     }
 
-    /* jarak hanya antara kartu kiri dan kanan, bukan di awal baris baru */
-    .alumni-card + .alumni-card {
-        margin-left: 0;
-    }
+    /* Muncul perlahan saat di-scroll */
+    const reveal = (selector, start, end) => {
+        const el = document.querySelector(selector);
+        if (!el) return;
 
-    .alumni-card:nth-child(even) {
-        margin-left: var(--gap);
-    }
+        gsap.fromTo(
+            el,
+            { y: 60, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: el,
+                    start,
+                    end,
+                    scrub: 1,
+                    invalidateOnRefresh: true
+                }
+            }
+        );
+    };
 
-    .alumni-panel {
-        padding: 16px 16px 16px calc(var(--card-w) + 14px);
-    }
+    reveal(".intro-paper", "top 100%", "top 80%");   // sebelumnya "top 90%", "top 65%"
+    reveal(".alumni-grid", "top 95%", "top 72%");    // sebelumnya "top 92%", "top 68%"
 
-    .alumni-panel h3 {
-        margin-bottom: 0.7em;
-        font-size: 13.5px;
-    }
+    /* Penutup: muncul satu per satu */
+    reveal(".closing-label", "top 92%", "top 78%");
+    reveal(".closing-title", "top 90%", "top 68%");
+    reveal(".closing-text",  "top 88%", "top 62%");
 
-    .alumni-panel p {
-        font-size: 12px;
-        line-height: 1.5;
-        text-align: left;      /* kolom sempit: rata kiri supaya spasi tidak renggang */
-    }
-
-    .alumni-name {
-        font-size: max(10px, calc(var(--card-w) * 0.075));
-    }
-}
-
-
-/* =========================================
-   RESPONSIVE — HP (≤ 600px)
-========================================= */
-
-@media (max-width: 600px) {
-    .menu-toggle {
-        top: 18px;
-        right: 18px;
-        width: 44px;
-        height: 44px;
-    }
-
-    .sidebar {
-        width: min(340px, 88vw);
-        max-width: 88vw;
-        padding: 74px 24px 24px;
-    }
-
-    .sidebar .sidebar-close {
-        top: 16px;
-        right: 16px;
-        width: 40px;
-        height: 40px;
-        font-size: 34px;
-    }
-
-    .sidebar .sidebar-main {
-        gap: 17px;
-    }
-
-    .sidebar nav a {
-        font-size: 21px;
-    }
-
-    .sidebar .sidebar-about {
-        margin-top: 16px;
-        padding-top: 15px;
-    }
-
-    .sidebar .sidebar-about button {
-        font-size: 21px;
-    }
-
-    .sound-toggle {
-        left: 18px;
-        bottom: 18px;
-        width: 42px;
-        height: 42px;
-    }
-
-    .chapter-opening {
-        height: 120svh;
-    }
-
-    .opening-sticky {
-        height: 100svh;
-        min-height: 0;
-    }
-
-    .chapter-paper {
-        width: 110vw;
-    }
-
-    .chapter-heading p {
-        font-size: 11px;
-        letter-spacing: 3px;
-    }
-
-    .chapter-heading h1 {
-        font-size: clamp(27px, 7vw, 34px);
-        line-height: 1.25;
-    }
-
-    .content-container {
-        width: 100%;
-        max-width: none;
-        padding: 0 14px;
-    }
-
-    .chapter-page .chapter-content {
-        padding-bottom: 80px;
-    }
-}
-
-
-/* =========================================
-   RESPONSIVE — ABOUT (≤ 768px)
-========================================= */
-
-@media (max-width: 768px) {
-    .about-overlay {
-        padding: 16px;
-    }
-
-    .about-image {
-        max-width: 94vw;
-        max-height: 80vh;
-    }
-
-    .about-close {
-        top: 12px;
-        right: 16px;
-        font-size: 36px;
-    }
-}
-
-
-/* =========================================
-   RESPONSIVE — HP SANGAT KECIL (≤ 360px)
-========================================= */
-
-@media (max-width: 360px) {
-    .sidebar {
-        width: 90vw;
-        max-width: 90vw;
-        padding-right: 20px;
-        padding-left: 22px;
-    }
-
-    .sidebar .sidebar-main {
-        gap: 15px;
-    }
-
-    .sidebar nav a {
-        font-size: 19px;
-    }
-
-    .sidebar .sidebar-about button {
-        font-size: 20px;
-    }
-
-    .sound-toggle {
-        left: 14px;
-        bottom: 14px;
-        width: 38px;
-        height: 38px;
-    }
-
-    .alumni-panel p {
-        font-size: 11px;
-    }
-}
-
-
-/* =========================================
-   REDUCE MOTION
-========================================= */
-
-@media (prefers-reduced-motion: reduce) {
-    .sidebar,
-    .alumni-card,
-    .alumni-panel,
-    .alumni-photo {
-        transition-duration: 0.01ms;
-        transition-delay: 0s;
-    }
-}
+    window.addEventListener("load", () => {
+        ScrollTrigger.refresh();
+    });
+});
