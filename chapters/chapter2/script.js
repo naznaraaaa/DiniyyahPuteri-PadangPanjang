@@ -34,7 +34,7 @@ if (menuToggle) {
      *
      * Tidak mengatur scale kembali ke 1.
      * Tidak menggunakan object-fit: cover yang dapat
-     * memotong gambar dan mengubah tampilan PNG.
+     * memotong gambar dan mengubah tampilan webp.
      */
     if (paper && isEnteringFromMenu) {
         const savedWidth = Number(
@@ -241,8 +241,8 @@ document.addEventListener("keydown", function (event) {
         return;
     }
 
-    const soundOn = "../../assets/global/icons/SoundOn.png";
-    const soundOff = "../../assets/global/icons/SoundOff.png";
+    const soundOn = "../../assets/global/icons/SoundOn.webp";
+    const soundOff = "../../assets/global/icons/SoundOff.webp";
 
     // Kondisi awal
     backgroundMusic.volume = 0.5;
