@@ -133,8 +133,8 @@
 
     if (!audio || !button || !icon) return;
 
-    const ON = "assets/global/icons/SoundOn.png";
-    const OFF = "assets/global/icons/SoundOff.png";
+    const ON = "assets/global/icons/SoundOn.webp";
+    const OFF = "assets/global/icons/SoundOff.webp";
 
     audio.volume = 0.5;
 
