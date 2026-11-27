@@ -200,8 +200,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const savedHeight = Number(sessionStorage.getItem("paperFinalHeight"));
 
         if (savedWidth > 0 && savedHeight > 0) {
-            paper.style.setProperty("width", `${savedWidth}px`, "important");
-            paper.style.setProperty("height", `${savedHeight}px`, "important");
+            paper.style.setProperty("width", ${savedWidth}px, "important");
+            paper.style.setProperty("height", ${savedHeight}px, "important");
             paper.style.setProperty("max-width", "none", "important");
             paper.style.setProperty("max-height", "none", "important");
             paper.style.setProperty("object-fit", "contain", "important");
