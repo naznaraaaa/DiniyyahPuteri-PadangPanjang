@@ -63,8 +63,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!soundToggle || !soundIcon || !backgroundMusic) return;
 
-        const soundOn = "../../assets/global/icons/SoundOn.png";
-        const soundOff = "../../assets/global/icons/SoundOff.png";
+        const soundOn = "../../assets/global/icons/SoundOn.webp";
+        const soundOff = "../../assets/global/icons/SoundOff.webp";
 
         const setState = (playing) => {
             soundIcon.src = playing ? soundOn : soundOff;
