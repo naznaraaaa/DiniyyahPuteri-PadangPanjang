@@ -63,8 +63,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!soundToggle || !soundIcon || !backgroundMusic) return;
 
-        const soundOn = "../../assets/global/icons/SoundOn.png";
-        const soundOff = "../../assets/global/icons/SoundOff.png";
+        const soundOn = "../../assets/global/icons/SoundOn.webp";
+        const soundOff = "../../assets/global/icons/SoundOff.webp";
 
         const setState = (playing) => {
             soundIcon.src = playing ? soundOn : soundOff;
@@ -106,6 +106,14 @@ document.addEventListener("DOMContentLoaded", () => {
         ? Array.from(alumniGrid.querySelectorAll(".alumni-card"))
         : [];
 
+    let refreshTimer;
+    function refreshScrollLater() {
+        clearTimeout(refreshTimer);
+        refreshTimer = setTimeout(() => {
+            if (typeof ScrollTrigger !== "undefined") ScrollTrigger.refresh();
+        }, 900);
+    }
+
     function setCardState(card, state) {
         const photo = card.querySelector(".alumni-photo");
 
@@ -122,11 +130,13 @@ document.addEventListener("DOMContentLoaded", () => {
         alumniCards.forEach((card) =>
             setCardState(card, card === target ? "open" : "hidden")
         );
+        refreshScrollLater();
     }
 
     function closeCards() {
         alumniGrid.classList.remove("has-open");
         alumniCards.forEach((card) => setCardState(card, "closed"));
+        refreshScrollLater(); 
     }
 
     if (alumniGrid) {
