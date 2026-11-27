@@ -406,7 +406,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "#2E8589",   // 1 — teal
             "#BA5E45",   // 2 — terakota
             "#44639A",   // 3 — biru
-            "#E3C875"    // 4 — ungu
+            "#d6a84f"    // 4 — Kuning
         ];
 
         /* Watak blob (satu lapis) */
