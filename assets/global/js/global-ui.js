@@ -84,8 +84,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (soundIcon) {
                 soundIcon.src = isPlaying
-                    ? "../../assets/global/icons/SoundOn.png"
-                    : "../../assets/global/icons/SoundOff.png";
+                    ? "../../assets/global/icons/SoundOn.webp"
+                    : "../../assets/global/icons/SoundOff.webp";
             }
         }
 
